@@ -8,6 +8,8 @@ universe: Lovecraft
 credits: Ora (création TsukiUHC)
 mc_version: 1.8.9
 command: /l
+players: 10 à 40
+camps: [{"name":"Humains","color":"#f5b85b"},{"name":"Grands Anciens","color":"#3fbfa3"},{"name":"Solitaires","color":"#b49cff"}]
 catalog_key: uhc-056
 mode_id: lovecraft
 position: 190
