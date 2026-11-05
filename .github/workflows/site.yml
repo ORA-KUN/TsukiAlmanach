@@ -1,0 +1,89 @@
+# Construit et met en ligne l'Almanach sur GitHub Pages.
+# · à chaque push (hors contenu/, qui passe par contenu.yml) ;
+# · toutes les 15 minutes si quelque chose a été publié sur le site depuis la dernière mise en ligne
+#   (les pages sont pré-rendues pour Discord et Google ; le site, lui, lit la base en direct) ;
+# · à la main (onglet Actions).
+# Au passage, le dossier contenu/ reçoit la dernière version des pages publiques (miroir pour Claude).
+name: Site
+
+on:
+  push:
+    branches: [claude/project-thread-jhto3d, main]
+    paths-ignore: ['contenu/**', '**.md']
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: almanach-site
+  cancel-in-progress: false
+
+env:
+  ALMANACH_SITE: https://ora-kun.github.io/TsukiAlmanach
+  ALMANACH_BASE: /TsukiAlmanach/
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Quelque chose a changé ?
+        id: check
+        run: |
+          if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then echo "go=1" >> "$GITHUB_OUTPUT"; exit 0; fi
+          url=$(grep '^VITE_SUPABASE_URL=' .env.production | cut -d= -f2-)
+          key=$(grep '^VITE_SUPABASE_KEY=' .env.production | cut -d= -f2-)
+          last=$(curl -sf -X POST "$url/rest/v1/rpc/docs_last_change" -H "apikey: $key" -H "Content-Type: application/json" -d '{}' | jq -r '. // ""' || true)
+          live=$(curl -sf "$ALMANACH_SITE/version.json" | jq -r '.last_change // ""' || true)
+          echo "Base : $last · en ligne : $live"
+          if [ -n "$last" ] && [ "$last" = "$live" ]; then echo "go=0" >> "$GITHUB_OUTPUT"; else echo "go=1" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: actions/setup-node@v4
+        if: steps.check.outputs.go == '1'
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Dépendances
+        if: steps.check.outputs.go == '1'
+        run: npm ci
+
+      - name: Miroir de la base vers contenu/
+        if: steps.check.outputs.go == '1'
+        run: |
+          node scripts/mirror.ts
+          if [ -n "$(git status --porcelain contenu)" ]; then
+            git config user.name "Almanach"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add contenu
+            git commit -m "Miroir : dernières pages publiées sur le site"
+            git pull --rebase --autostash origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" || echo "::warning::Miroir non poussé (conflit avec un envoi en cours), il réessaiera au prochain passage."
+          fi
+
+      - name: Construction
+        if: steps.check.outputs.go == '1'
+        run: |
+          npm run build
+          node scripts/prerender.ts
+
+      - uses: actions/configure-pages@v5
+        if: steps.check.outputs.go == '1'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.check.outputs.go == '1'
+        with:
+          path: dist
+
+      - name: Mise en ligne
+        id: deploy
+        if: steps.check.outputs.go == '1'
+        uses: actions/deploy-pages@v4

@@ -202,6 +202,13 @@ await su();
 ok((await one(`select public, allowed_mime_types from storage.buckets where id = 'docs'`)).allowed_mime_types.includes('image/png'), 'seau public « docs » limité aux images');
 
 
+console.log('\n10. Aperçu');
+await as(null);
+const ov = await q(`select * from docs_overview()`);
+ok(ov.length === 1 && ov[0].space_id === sp.id && ov[0].roles >= 3, 'aperçu public : pages et rôles de l’espace en ligne');
+await su();
+ok((await one(`select docs_slugify(repeat('a', 59) || ' b') s`)).s === 'a'.repeat(59), 'slug coupé sans tiret final');
+
 console.log('\n9. Synchro depuis GitHub (Claude)');
 await su();
 const gs = (body) => one(`select docs_git_sync($1::jsonb) r`, [JSON.stringify(body)]).then((x) => x.r);
