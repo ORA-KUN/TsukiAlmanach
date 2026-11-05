@@ -1,0 +1,16 @@
+{
+  "name": "tsuki-docs",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit -p tsconfig.json && vite build",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --test test/*.test.ts",
+    "test:base": "node test/base.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.15"
+  }
+}
