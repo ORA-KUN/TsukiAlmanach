@@ -2,7 +2,7 @@
 // · Supabase (le vrai site, base de Tsuki) ;
 // · mémoire (démo et tests, ?demo dans l'adresse ou VITE_DEMO=1).
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import type { CatalogRow, ChangelogEntry, Draft, Member, Overview, Page, PageLite, Revision, SearchHit, Space, SpaceStatus, StatRow } from './types.ts';
+import type { AdminMember, CatalogRow, ChangelogEntry, Draft, Member, Overview, Page, PageLite, Revision, SearchHit, Space, SpaceStatus, StatRow } from './types.ts';
 
 export type PublishInput = { title: string; description: string; icon: string; content: string; note: string; base: number; force?: boolean };
 export type DraftInput = { title: string; description: string; icon: string; content: string; base: number };
@@ -43,6 +43,12 @@ export interface Api {
   // Envoi par Claude depuis GitHub : compte GitHub relié au membre connecté.
   githubLogin(): Promise<string | null>;
   setGithubLogin(login: string): Promise<string | null>;
+  // Onglet Membres (admins) : mêmes garde-fous que Tsuki, vérifiés par la base.
+  adminMembers(): Promise<AdminMember[]>;
+  adminSetEmail(id: string, email: string): Promise<string>;
+  adminSetPassword(id: string, password: string): Promise<void>;
+  adminSetRole(id: string, role: AdminMember['role']): Promise<string>;
+  adminSetGithub(id: string, login: string): Promise<string | null>;
 }
 
 const LITE_COLUMNS = 'id, space_id, parent_id, slug, title, icon, kind, archived, hidden, visibility, revision, published_at, updated_at';
@@ -194,6 +200,21 @@ class SupabaseApi implements Api {
   }
   async setGithubLogin(login: string) {
     return (await this.run(this.sb.rpc('docs_set_github', { p_login: login }))) as string | null;
+  }
+  async adminMembers() {
+    return ((await this.run(this.sb.rpc('docs_admin_members'))) ?? []) as AdminMember[];
+  }
+  async adminSetEmail(id: string, email: string) {
+    return (await this.run(this.sb.rpc('docs_admin_set_email', { p_target: id, p_email: email }))) as string;
+  }
+  async adminSetPassword(id: string, password: string) {
+    await this.run(this.sb.rpc('admin_set_password', { target: id, new_password: password }));
+  }
+  async adminSetRole(id: string, role: AdminMember['role']) {
+    return (await this.run(this.sb.rpc('docs_admin_set_role', { p_target: id, p_role: role }))) as string;
+  }
+  async adminSetGithub(id: string, login: string) {
+    return (await this.run(this.sb.rpc('docs_admin_set_github', { p_target: id, p_login: login }))) as string | null;
   }
 }
 

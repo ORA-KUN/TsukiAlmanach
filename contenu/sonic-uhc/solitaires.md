@@ -1,11 +1,10 @@
 ---
 title: Solitaires
 icon: ⭐
-description: "Shadow, le Time Eater et La Fin, qui jouent chacun pour soi."
+description: Shadow, le Time Eater et La Fin, qui jouent chacun pour soi.
 parent: roles
 position: 3
-revision: 1
-note: Règles réorganisées comme une doc de mode à rôles : Informations, Rôles, Particularités
+revision: 2
 ---
 
 :::info Solitaires

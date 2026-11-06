@@ -117,6 +117,19 @@ export type StatRow = { page_id: string; day: string; views: number; up: number;
 
 export type Member = { id: string; email: string; pseudo: string; mc_name: string | null; admin: boolean };
 
+// Compte de l'équipe vu par un admin (onglet Membres).
+export type AdminMember = {
+  id: string;
+  pseudo: string;
+  mc_name: string | null;
+  email: string;
+  role: 'admin' | 'membre';
+  member: boolean;
+  github_login: string | null;
+  last_sign_in_at: string | null;
+  created_at: string;
+};
+
 export type CatalogRow = { seed_key: string; name: string; version: string; creator: string; mc_version: string; status: string; mode_id: string | null; doc_url: string | null };
 
 export type SpaceStatus = { space_id: string; status: string };

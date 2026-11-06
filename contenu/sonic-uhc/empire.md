@@ -4,8 +4,7 @@ icon: 🔴
 description: "Les 8 rôles de l'Empire : Eggman, Sage, Metal Sonic, Orbot, Cubot, Infinite, le Badnik et le Robot."
 parent: roles
 position: 1
-revision: 1
-note: Règles réorganisées comme une doc de mode à rôles : Informations, Rôles, Particularités
+revision: 2
 ---
 
 :::info Camp de l'Empire Eggman

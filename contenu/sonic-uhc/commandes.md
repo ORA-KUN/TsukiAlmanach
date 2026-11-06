@@ -3,8 +3,7 @@ title: Commandes
 icon: ⌨️
 description: Les commandes /sonic et le menu de l'host.
 position: 4
-revision: 1
-note: Règles réorganisées comme une doc de mode à rôles : Informations, Rôles, Particularités
+revision: 2
 ---
 
 Tout passe par `/sonic` (alias `/sonicuhc`). Les pouvoirs s'utilisent d'un clic droit avec leur objet, sauf la Robotisation d'Eggman.

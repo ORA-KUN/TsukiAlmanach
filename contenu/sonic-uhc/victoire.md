@@ -4,8 +4,7 @@ icon: 🏆
 description: Comment gagner une partie de Sonic UHC et quels camps peuvent l'emporter.
 parent: regles
 position: 1
-revision: 0
-note: Nouvelle page : conditions de victoire
+revision: 1
 ---
 
 Le Sonic UHC se gagne comme un UHC classique : le **dernier camp en vie** remporte la partie.

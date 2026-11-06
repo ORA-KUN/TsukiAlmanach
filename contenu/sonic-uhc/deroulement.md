@@ -4,8 +4,7 @@ icon: ⏳
 description: Les timers d'une partie de Sonic UHC (rôles, jour et nuit, évents, bordure) et ce qui se passe au lancement.
 parent: regles
 position: 2
-revision: 1
-note: Règles réorganisées comme une doc de mode à rôles : Informations, Rôles, Particularités
+revision: 2
 ---
 
 ## Timers

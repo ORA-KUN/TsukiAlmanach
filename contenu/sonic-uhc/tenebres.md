@@ -4,8 +4,7 @@ icon: 🟣
 description: "Les 5 rôles des Black Arms : Black Doom, Mephiles, Black Oak, Black Hawk et le Soldat."
 parent: roles
 position: 2
-revision: 1
-note: Règles réorganisées comme une doc de mode à rôles : Informations, Rôles, Particularités
+revision: 2
 ---
 
 :::info Camp des Ténèbres

@@ -4,8 +4,7 @@ icon: 🏛️
 description: Le Temple de Gaïa au centre, le Coffre de Gaïa, le Cyber Space, le Titan et la Comète Noire.
 parent: particularites
 position: 3
-revision: 1
-note: Règles réorganisées comme une doc de mode à rôles : Informations, Rôles, Particularités
+revision: 2
 ---
 
 Le plugin construit tout lui-même et remet le terrain en état à la fin : aucune map à installer.

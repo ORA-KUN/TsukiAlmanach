@@ -2,8 +2,7 @@
 title: Présentation
 description: "Sonic UHC, mode de jeu à rôles de l'univers Sonic créé par l'équipe TsukiUHC : 32 rôles, 4 camps, anneaux, Wisps et Émeraudes du Chaos."
 position: 0
-revision: 1
-note: Règles réorganisées comme une doc de mode à rôles : Informations, Rôles, Particularités
+revision: 2
 ---
 
 **Sonic UHC** est un mode de jeu à rôles inspiré de la saga **Sonic the Hedgehog**, ère moderne (Colors, Unleashed, Frontiers, Forces, Sonic X Shadow Generations).

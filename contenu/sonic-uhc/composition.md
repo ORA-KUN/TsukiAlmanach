@@ -4,8 +4,7 @@ icon: 🧩
 description: Les 32 rôles du Sonic UHC, la répartition des camps selon le nombre de joueurs et qui connaît qui.
 parent: regles
 position: 0
-revision: 0
-note: Nouvelle page : composition et camps
+revision: 1
 ---
 
 Le mode compte **32 rôles** :

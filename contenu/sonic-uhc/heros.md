@@ -4,8 +4,7 @@ icon: 💙
 description: "Les 16 Héros : Sonic, Tails, Knuckles, Amy, Jet, Silver, Blaze, Rouge, Omega et les autres."
 parent: roles
 position: 0
-revision: 1
-note: Règles réorganisées comme une doc de mode à rôles : Informations, Rôles, Particularités
+revision: 2
 ---
 
 :::info Camp des Héros

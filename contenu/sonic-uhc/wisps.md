@@ -4,8 +4,7 @@ icon: ✨
 description: Les capsules d'Eggman et les 8 Wisps de Sonic Colors, des pouvoirs à usage unique.
 parent: particularites
 position: 1
-revision: 1
-note: Règles réorganisées comme une doc de mode à rôles : Informations, Rôles, Particularités
+revision: 2
 ---
 
 Les **Wisps** sont des pouvoirs à **usage unique** : clic droit pour l'utiliser, puis il disparaît.

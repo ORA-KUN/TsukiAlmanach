@@ -4,8 +4,7 @@ icon: 💎
 description: Où trouver les sept Émeraudes du Chaos, ce qu'elles donnent et la Bénédiction du Chaos.
 parent: particularites
 position: 2
-revision: 1
-note: Règles réorganisées comme une doc de mode à rôles : Informations, Rôles, Particularités
+revision: 2
 ---
 
 ## Où les trouver

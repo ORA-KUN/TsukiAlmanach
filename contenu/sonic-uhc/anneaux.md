@@ -4,8 +4,7 @@ icon: 💍
 description: Gagner des anneaux, le bouclier d'anneaux et la boutique de l'Ancien Koco.
 parent: particularites
 position: 0
-revision: 1
-note: Règles réorganisées comme une doc de mode à rôles : Informations, Rôles, Particularités
+revision: 2
 ---
 
 Les anneaux sont à la fois une **vie de secours** et une **monnaie**. Un anneau est un objet : il se jette, se range et se vole. Il ne sert à aucun craft.

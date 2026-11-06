@@ -25,7 +25,8 @@ const signup = async (email, meta) => (await q(`insert into auth.users (email, r
 await db.exec(`
   create schema extensions; create extension pgcrypto schema extensions;
   create schema auth;
-  create table auth.users (id uuid primary key default gen_random_uuid(), email text unique, raw_user_meta_data jsonb default '{}', encrypted_password text, updated_at timestamptz);
+  create table auth.users (id uuid primary key default gen_random_uuid(), email text unique, raw_user_meta_data jsonb default '{}', encrypted_password text, updated_at timestamptz, created_at timestamptz default now(), last_sign_in_at timestamptz);
+  create table auth.identities (user_id uuid references auth.users on delete cascade, provider text, identity_data jsonb, updated_at timestamptz);
   create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub', true), '')::uuid $$;
   create role anon nologin; create role authenticated nologin; create role service_role nologin;
   grant usage on schema public, auth, extensions to anon, authenticated, service_role;
@@ -272,6 +273,63 @@ ok(!(await author('bob-dev')), 'un membre dont l’invitation est retirée ne pe
 await q(`update invitations set email = 'bob@x.fr' where email = 'parti@x.fr'`);
 await as(bob);
 ok((await one(`select docs_set_github('') v`)).v === null && !(await author('bob-dev')), 'vider le champ délie le compte');
+
+
+console.log('\n11. Onglet Membres des admins');
+await su();
+await q(`insert into invitations (email, code, role) values ('ana@x.fr', 'ANAA-0001', 'admin'), ('carl@x.fr', 'CARL-0001', 'membre')`);
+const ana = await signup('ana@x.fr', { pseudo: 'Ana', invite: 'ANAA-0001' });
+let carl = await signup('carl@x.fr', { pseudo: 'Carl', invite: 'CARL-0001' });
+await q(`insert into auth.identities (user_id, provider, identity_data) values ($1, 'email', '{"email":"bob@x.fr"}')`, [bob]);
+await as(carl);
+await q(`select docs_set_github('carl-gh')`);
+// Le compte de Carl avait une faute dans l'adresse : on le supprime et il en recrée un.
+await su();
+await q(`delete from auth.users where id = $1`, [carl]);
+await q(`insert into invitations (email, code, role) values ('carl.vrai@x.fr', 'CARL-0002', 'membre')`);
+carl = await signup('carl.vrai@x.fr', { pseudo: 'Carl', invite: 'CARL-0002' });
+await as(carl);
+ok((await one(`select docs_set_github('carl-gh') v`)).v === 'carl-gh' && (await author('carl-gh'))?.pseudo === 'Carl',
+  'un compte GitHub resté sur un ancien compte supprimé est libéré quand le membre le relie à son nouveau compte');
+await as(bob);
+await expectError(() => q(`select docs_set_github('carl-gh')`), 'mais jamais pris à un membre actuel', /déjà relié/);
+await expectError(() => q(`select * from docs_admin_members()`), 'un membre non admin ne voit pas la liste des comptes', /Réservé aux admins/);
+await expectError(() => q(`select docs_admin_set_email($1, 'pirate@x.fr')`, [jules]), 'ni ne change une adresse', /Réservé aux admins/);
+await expectError(() => q(`select docs_admin_set_role($1, 'admin')`, [bob]), 'ni ne se donne le rôle admin', /Réservé aux admins/);
+await expectError(() => q(`select docs_admin_set_github($1, 'bob-gh')`, [jules]), 'ni ne relie le compte GitHub d’un autre', /Réservé aux admins/);
+await as(eve);
+await expectError(() => q(`select * from docs_admin_members()`), 'un profil admin forgé sans invitation non plus', /Réservé aux admins/);
+await as(null);
+await expectError(() => q(`select * from docs_admin_members()`), 'un visiteur non plus', /permission denied/);
+await expectError(() => q(`select docs_is_member_id($1)`, [bob]), 'les fonctions internes ne sont pas appelables de l’extérieur', /permission denied/);
+await as(jules);
+const list = await q(`select * from docs_admin_members()`);
+ok(list.length === 5 && list.find((m) => m.id === bob)?.email === 'bob@x.fr' && list.find((m) => m.id === eve)?.member === false,
+  'un admin voit tous les comptes, leur adresse et s’ils sont encore membres');
+ok((await one(`select docs_admin_set_email($1, ' Bob.Nouveau@X.fr ') v`, [bob])).v === 'bob.nouveau@x.fr', 'un admin corrige l’adresse d’un membre');
+await su();
+const bobNow = await one(`select u.email, (select identity_data->>'email' from auth.identities where user_id = u.id) ident, (select count(*)::int from invitations where email = 'bob.nouveau@x.fr') inv from auth.users u where u.id = $1`, [bob]);
+ok(bobNow.email === 'bob.nouveau@x.fr' && bobNow.ident === 'bob.nouveau@x.fr' && bobNow.inv === 1, 'adresse de connexion et invitation suivent');
+await as(bob);
+ok((await one(`select docs_member() m`)).m === true, 'le membre reste membre avec sa nouvelle adresse');
+await as(jules);
+await expectError(() => q(`select docs_admin_set_email($1, 'ana@x.fr')`, [bob]), 'une adresse déjà prise est refusée', /déjà utilisée/);
+await expectError(() => q(`select docs_admin_set_email($1, 'carl@x')`, [bob]), 'une adresse invalide est refusée', /invalide/);
+await expectError(() => q(`select docs_admin_set_email($1, 'ana2@x.fr')`, [ana]), 'l’adresse d’un autre admin est protégée', /autre admin/);
+await expectError(() => q(`select admin_set_password($1, 'motdepasse1')`, [ana]), 'son mot de passe aussi (règle de Tsuki)', /autre admin/);
+await q(`select admin_set_password($1, 'provisoire1')`, [bob]);
+await su();
+ok((await one(`select encrypted_password = extensions.crypt('provisoire1', encrypted_password) ok from auth.users where id = $1`, [bob])).ok === true, 'un admin donne un mot de passe provisoire à un membre');
+await as(jules);
+ok((await one(`select docs_admin_set_role($1, 'membre') r`, [ana])).r === 'membre', 'un admin peut retirer le rôle admin à un autre');
+ok((await one(`select docs_admin_set_email($1, 'ana2@x.fr') v`, [ana])).v === 'ana2@x.fr', 'puis corriger son adresse');
+await q(`select docs_admin_set_role($1, 'admin')`, [ana]);
+await expectError(() => q(`select docs_admin_set_role($1, 'membre')`, [jules]), 'personne ne retire son propre rôle admin', /propre rôle/);
+await expectError(() => q(`select docs_admin_set_role($1, 'roi')`, [bob]), 'rôle inconnu refusé', /Rôle inconnu/);
+ok((await one(`select docs_admin_set_github($1, '@Bob-Dev') v`, [bob])).v === 'bob-dev' && (await author('bob-dev'))?.pseudo === 'Bob', 'un admin relie le compte GitHub d’un membre');
+await as(jules);
+await expectError(() => q(`select docs_admin_set_github($1, 'carl-gh')`, [bob]), 'sans pouvoir prendre celui d’un autre membre', /déjà relié/);
+ok((await one(`select docs_admin_set_github($1, '') v`, [bob])).v === null && !(await author('bob-dev')), 'et le délie');
 
 console.log(`\n${pass} réussis, ${fail} échoués`);
 process.exit(fail ? 1 : 0);
