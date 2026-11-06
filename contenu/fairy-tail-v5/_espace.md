@@ -8,7 +8,6 @@ family: fairy-tail
 version_label: V5
 universe: Fairy Tail
 credits: RomainLeRoux (création du mode et doc GitBook)
-origin_url: https://tenro.gitbook.io/fairy-tail-uhc-v5
 mc_version: 1.8.9
 command: /ft
 players: 20 à 66
