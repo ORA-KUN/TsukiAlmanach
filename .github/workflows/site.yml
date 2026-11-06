@@ -23,10 +23,6 @@ concurrency:
   group: almanach-site
   cancel-in-progress: false
 
-env:
-  ALMANACH_SITE: https://ora-kun.github.io/TsukiAlmanach
-  ALMANACH_BASE: /TsukiAlmanach/
-
 jobs:
   site:
     runs-on: ubuntu-latest
@@ -36,6 +32,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Adresse du site lue dans les réglages Pages : https://ora-kun.github.io/TsukiAlmanach,
+      # ou la racine du domaine dès qu'il est renseigné dans Settings > Pages > Custom domain.
+      - uses: actions/configure-pages@v5
+        id: pages
+
+      - name: Adresse du site
+        run: |
+          site="${{ steps.pages.outputs.base_url }}"
+          base="${{ steps.pages.outputs.base_path }}"
+          echo "ALMANACH_SITE=${site%/}" >> "$GITHUB_ENV"
+          echo "ALMANACH_BASE=${base%/}/" >> "$GITHUB_ENV"
+          echo "Site : ${site%/} · base : ${base%/}/"
+
       - name: Quelque chose a changé ?
         id: check
         run: |
@@ -43,9 +52,10 @@ jobs:
           url=$(grep '^VITE_SUPABASE_URL=' .env.production | cut -d= -f2-)
           key=$(grep '^VITE_SUPABASE_KEY=' .env.production | cut -d= -f2-)
           last=$(curl -sf -X POST "$url/rest/v1/rpc/docs_last_change" -H "apikey: $key" -H "Content-Type: application/json" -d '{}' | jq -r '. // ""' || true)
-          live=$(curl -sf "$ALMANACH_SITE/version.json" | jq -r '.last_change // ""' || true)
+          # Le site en ligne doit aussi avoir été construit pour cette adresse (changement de domaine).
+          live=$(curl -sfL "$ALMANACH_SITE/version.json" | jq -r '(.last_change // "") + " " + (.site // "")' || true)
           echo "Base : $last · en ligne : $live"
-          if [ -n "$last" ] && [ "$last" = "$live" ]; then echo "go=0" >> "$GITHUB_OUTPUT"; else echo "go=1" >> "$GITHUB_OUTPUT"; fi
+          if [ -n "$last" ] && [ "$last $ALMANACH_SITE" = "$live" ]; then echo "go=0" >> "$GITHUB_OUTPUT"; else echo "go=1" >> "$GITHUB_OUTPUT"; fi
 
       - uses: actions/setup-node@v4
         if: steps.check.outputs.go == '1'
@@ -74,9 +84,6 @@ jobs:
         run: |
           npm run build
           node scripts/prerender.ts
-
-      - uses: actions/configure-pages@v5
-        if: steps.check.outputs.go == '1'
 
       - uses: actions/upload-pages-artifact@v3
         if: steps.check.outputs.go == '1'

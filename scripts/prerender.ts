@@ -144,5 +144,5 @@ write('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemap.map((u) => `  <url><loc>${esc(u)}</loc></url>`).join('\n')}\n</urlset>\n`);
 write('llms.txt', llms.join('\n') + '\n');
 write('llms-full.txt', `# Almanach de Tsuki : toutes les pages\n${full.join('')}\n`);
-write('version.json', JSON.stringify({ last_change: snap.lastChange, built_at: new Date().toISOString(), pages: count }) + '\n');
+write('version.json', JSON.stringify({ last_change: snap.lastChange, site: SITE, built_at: new Date().toISOString(), pages: count }) + '\n');
 console.log(`Pré-rendu : ${count} pages, ${snap.spaces.length} espaces.`);
