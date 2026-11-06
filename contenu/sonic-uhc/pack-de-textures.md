@@ -2,7 +2,7 @@
 title: Pack de textures
 icon: 📦
 description: Le pack 3D du Sonic UHC (anneaux, Émeraudes, Wisps, capsules, objets des rôles), sans OptiFine.
-position: 4
+position: 5
 revision: 1
 ---
 
