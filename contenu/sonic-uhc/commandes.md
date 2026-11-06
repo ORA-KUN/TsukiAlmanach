@@ -4,6 +4,7 @@ icon: ⌨️
 description: Les commandes /sonic et le menu de l'host.
 position: 4
 revision: 2
+note: Anneaux en compteur, Bénédiction à l'autel
 ---
 
 Tout passe par `/sonic` (alias `/sonicuhc`). Les pouvoirs s'utilisent d'un clic droit avec leur objet, sauf la Robotisation d'Eggman.
@@ -14,9 +15,9 @@ Tout passe par `/sonic` (alias `/sonicuhc`). Les pouvoirs s'utilisent d'un clic 
 | --- | --- |
 | `/sonic` | Aide |
 | `/sonic role` | Ton rôle, ton camp, ton pouvoir et tes alliés |
-| `/sonic anneaux` | Tes anneaux et l'état de ton bouclier |
+| `/sonic anneaux` | Ton compteur d'anneaux et l'état de ton bouclier |
 | `/sonic emeraudes` | L'état des sept Émeraudes |
-| `/sonic reunir` | Bénédiction du Chaos, au Temple de Gaïa |
+| `/sonic reunir` | Poser les 7 Émeraudes à l'autel du Temple (aussi par clic droit sur l'autel) |
 | `/sonic robotiser <joueur>` | Robotisation (Eggman) |
 | `/sonic compo` | La composition de la partie |
 | `/sonic pack` | Le lien du pack de textures |

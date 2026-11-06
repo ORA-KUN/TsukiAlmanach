@@ -5,18 +5,22 @@ description: Les capsules d'Eggman et les 8 Wisps de Sonic Colors, des pouvoirs 
 parent: particularites
 position: 1
 revision: 2
+note: Un seul Wisp à la fois, 25 anneaux pour le libérer, un Wisp par capsule
 ---
 
-Les **Wisps** sont des pouvoirs à **usage unique** : clic droit pour l'utiliser, puis il disparaît.
+Les **Wisps** sont des pouvoirs à **usage unique** : clic droit pour le libérer, puis il disparaît.
+
+- Libérer un Wisp coûte **25 anneaux**. Sans eux, il reste dans ta main.
+- Tu ne portes qu'**un Wisp à la fois** : impossible d'ouvrir une capsule ou d'en acheter un autre tant que tu en as un.
 
 ## Capsules
 
 - Les capsules d'Eggman apparaissent en surface dès **10 min**, puis toutes les **8 min**. Leurs coordonnées sont annoncées.
 - Pour en ouvrir une : **5 s** de clic droit sur le bouton, sans prendre de coup ni s'éloigner.
-- Une capsule donne **3 Wisps** au hasard et **5 anneaux**.
+- Une capsule donne **1 Wisp**, celui qu'on voit dedans, et **5 anneaux**.
 - Une capsule non ouverte disparaît après **8 min**.
 
-On trouve aussi des Wisps chez l'[Ancien Koco](./anneaux) et grâce à Yacker et au Chao.
+On trouve aussi des Wisps chez l'[Ancien Koco](./anneaux) (**75 anneaux**) et grâce à Yacker et au Chao.
 
 ## Les 8 Wisps
 
