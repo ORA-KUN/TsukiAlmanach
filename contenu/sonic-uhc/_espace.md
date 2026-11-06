@@ -13,7 +13,7 @@ camps: [{"name":"Héros","color":"#3b82f6"},{"name":"Empire Eggman","color":"#e5
 catalog_key: uhc-x7
 mode_id: sonic
 position: 200
-updated_at: 2026-11-06T12:41:18.889935+00:00
+updated_at: 2026-11-06T14:35:08.493588+00:00
 ---
 
 Fiche de l’espace. Le texte sous l’en-tête n’est pas publié.

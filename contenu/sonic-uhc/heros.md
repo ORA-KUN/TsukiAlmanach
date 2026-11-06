@@ -4,7 +4,7 @@ icon: 💙
 description: "Les 16 Héros : Sonic, Tails, Knuckles, Amy, Jet, Silver, Blaze, Rouge, Omega et les autres."
 parent: roles
 position: 0
-revision: 2
+revision: 3
 ---
 
 :::info Camp des Héros
@@ -96,7 +96,7 @@ Manuscrit de Gaïa : la boussole du Coffre de Gaïa.
 Appel des Wisps : un Wisp à chaque épisode.
 
 - **Passif** : Appel des Wisps
-- **Effet** : **1 Wisp** au hasard à l'annonce des rôles, puis **1** à chaque nouvel épisode
+- **Effet** : **1 Wisp** au hasard à l'annonce des rôles, puis **1** à chaque nouvel épisode si tu n'en portes pas déjà un
 :::
 
 :::role Cream et Cheese {camp="Héros" tete="https://mc-heads.net/head/3bf053720f72988950f77393cf35b3e9fbd24b958ab24b7a653ef7a79b3bb47d/128"}

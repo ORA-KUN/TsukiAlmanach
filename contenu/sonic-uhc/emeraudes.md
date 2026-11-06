@@ -4,7 +4,7 @@ icon: 💎
 description: Où trouver les sept Émeraudes du Chaos, ce qu'elles donnent et la Bénédiction du Chaos.
 parent: particularites
 position: 2
-revision: 2
+revision: 3
 ---
 
 ## Où les trouver
@@ -16,6 +16,8 @@ revision: 2
 | Bleue | dans le Coffre de Gaïa, sous terre | révélé à **60 min** |
 | Cyan | premier au Goal Ring du 1er Cyber Space | **25 min** |
 | Blanche | premier au Goal Ring du 2e Cyber Space | **40 min** |
+
+Une Émeraude du Cyber Space que personne n'a prise repart dans un autre niveau **10 min** plus tard.
 | Rouge | coup fatal porté au Titan | **55 min** |
 | Violette | cœur de la Comète Noire (**5 s** de clic droit) | **75 min** |
 
@@ -33,10 +35,11 @@ revision: 2
 ## Bénédiction du Chaos
 
 :::astuce Comment l'obtenir
-Les **7 Émeraudes** portées par des joueurs d'un **même camp**, tous dans le cercle du Temple. L'un d'eux tape `/sonic reunir`, puis **10 s** sans qu'aucun porteur ne prenne de coup ni ne sorte du cercle. Un Solitaire peut le faire seul s'il porte les sept.
+Un seul joueur qui porte les **7 Émeraudes** les pose à l'autel du Temple de Gaïa : **clic droit** sur l'autel (ou `/sonic reunir` dans le Temple), puis **10 s** sans prendre de coup. Il donne la Bénédiction à tout son camp.
 :::
 
-- Tous les membres vivants du camp gagnent **Résistance I** pendant **10 min**, en plus de leurs autres bonus.
+- Les Émeraudes sont absorbées : le porteur ne les a plus.
+- Tous les membres vivants du camp gagnent **Résistance I** pendant **10 min**, en plus de leurs autres bonus. Un Solitaire la garde pour lui.
 - Le tchat annonce le camp béni.
 - À la fin, les Émeraudes se dispersent autour du centre (**250 blocs** par défaut) et la chasse repart.
 
