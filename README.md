@@ -1,7 +1,7 @@
 # Almanach
 
 Les règles des modes UHC de Tsuki, lisibles en partie : recherche instantanée des rôles, cartes de rôle, versions,
-nouveautés, thème jour et nuit. Site : https://ora-kun.github.io/TsukiAlmanach
+nouveautés, thème jour et nuit. Site : https://docs-almanach.fr
 
 - **Joueurs** : tout est public, rien à installer.
 - **Équipe Tsuki** : bouton « Équipe » en haut à droite, même compte que l’application Tsuki. Éditeur avec aperçu en direct,

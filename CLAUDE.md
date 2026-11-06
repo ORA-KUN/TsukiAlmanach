@@ -1,6 +1,6 @@
 # Almanach : consignes pour Claude
 
-L’Almanach est le site des règles des modes de Tsuki UHC (https://ora-kun.github.io/TsukiAlmanach).
+L’Almanach est le site des règles des modes de Tsuki UHC (https://docs-almanach.fr).
 Les textes vivent dans la base Supabase du projet Tsuki ; ce dépôt contient le site et un miroir des pages publiques.
 On répond et on écrit en français.
 
