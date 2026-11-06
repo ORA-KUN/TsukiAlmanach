@@ -1,4 +1,4 @@
-import { ArchiveRestore, BarChart3, FilePen, FolderPlus, Inbox, Library, LogOut, Trash2 } from 'lucide-react';
+import { ArchiveRestore, BarChart3, CheckCircle2, FilePen, FolderPlus, GitBranch, Inbox, Library, LogOut, Sparkles, Trash2 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { Head, SpaceIcon } from '../components/Icon.tsx';
 import { friendlyError } from '../lib/api.ts';
@@ -65,6 +65,7 @@ const TABS = [
   { id: 'stats', label: 'Statistiques', icon: <BarChart3 size={16} /> },
   { id: 'corbeille', label: 'Corbeille', icon: <Trash2 size={16} /> },
   { id: 'nouvel-espace', label: 'Nouvel espace', icon: <FolderPlus size={16} /> },
+  { id: 'claude', label: 'Claude', icon: <Sparkles size={16} /> },
 ];
 
 export default function Team({ tab }: { tab: string }) {
@@ -108,6 +109,7 @@ export default function Team({ tab }: { tab: string }) {
       {current.id === 'stats' && <Stats />}
       {current.id === 'corbeille' && <Trash />}
       {current.id === 'nouvel-espace' && <NewSpace />}
+      {current.id === 'claude' && <WithClaude />}
       <Toasts />
     </main>
   );
@@ -451,6 +453,95 @@ function NewSpace() {
           <span className="muted small">Il reste invisible du public tant qu’un admin ne l’a pas publié.</span>
         </div>
       </form>
+    </div>
+  );
+}
+
+// Écrire avec son propre Claude : il pousse dans contenu/ du dépôt, la fonction docs-sync vérifie le membre.
+function WithClaude() {
+  const { api, member } = useSession();
+  const linked = useData<string | null>('team:github', () => api.githubLogin());
+  const [value, setValue] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const current = linked.data ?? null;
+  const input = value ?? current ?? '';
+  return (
+    <div className="team__panel">
+      <section>
+        <h2 className="team__h2">Écrire les docs avec ton Claude</h2>
+        <p className="muted small">
+          Ton Claude peut écrire les pages de tes modes directement dans l’Almanach. Il passe par le dépôt GitHub du site :
+          seuls les membres de l’équipe ajoutés au dépôt, avec leur compte GitHub relié ici, peuvent envoyer des pages.
+        </p>
+      </section>
+      <section>
+        <h2 className="team__h2">Mon compte GitHub</h2>
+        <form
+          className="form github-link"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            setBusy(true);
+            setError(null);
+            try {
+              const v = await api.setGithubLogin(input);
+              invalidate('team:github');
+              setValue(null);
+              toast(v ? `Compte GitHub @${v} relié.` : 'Compte GitHub délié.');
+            } catch (err) {
+              setError(friendlyError(err));
+            } finally {
+              setBusy(false);
+            }
+          }}
+        >
+          <Field label="Pseudo GitHub" hint="Ton pseudo ou l’adresse de ton profil GitHub. Vide le champ pour délier ton compte.">
+            <input className="input" value={input} onChange={(e) => setValue(e.target.value)} placeholder="ton-pseudo" autoComplete="off" spellCheck={false} />
+          </Field>
+          <div className="form__actions">
+            <button className="btn" disabled={busy || input.trim().toLowerCase() === (current ?? '')}>
+              <GitBranch size={15} /> {busy ? 'Enregistrement…' : current && input.trim() === '' ? 'Délier' : 'Relier'}
+            </button>
+            {current ? (
+              <span className="small github-link__ok">
+                <CheckCircle2 size={14} /> Relié à @{current}
+              </span>
+            ) : (
+              <span className="muted small">{linked.data === undefined ? '…' : 'Aucun compte relié.'}</span>
+            )}
+          </div>
+          {error && <p className="form__error">{error}</p>}
+        </form>
+      </section>
+      <section>
+        <h2 className="team__h2">Mettre en place (une seule fois)</h2>
+        <ol className="steps">
+          <li>
+            Crée un compte sur <a href="https://github.com/signup" target="_blank" rel="noopener noreferrer">GitHub</a> si tu n’en as pas,
+            et envoie ton pseudo à Jules : il t’ajoute au dépôt <code>ORA-KUN/TsukiAlmanach</code>. Accepte l’invitation reçue par mail.
+          </li>
+          <li>Relie ton compte GitHub juste au-dessus.</li>
+          <li>
+            Dans Claude (sur <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer">claude.ai/code</a> ou dans l’appli), connecte
+            ton compte GitHub et ajoute le dépôt <code>ORA-KUN/TsukiAlmanach</code>.
+          </li>
+          <li>
+            Demande-lui par exemple : « Écris la doc de mon mode X dans l’Almanach : présentation, règles et une carte par rôle. »
+            Il suit tout seul le mode d’emploi du dépôt.
+          </li>
+        </ol>
+      </section>
+      <section>
+        <h2 className="team__h2">Ce qui se passe ensuite</h2>
+        <ul className="steps steps--bullets">
+          <li>Les pages sont en ligne une minute après, signées « Claude pour {member?.pseudo ?? 'toi'} » dans l’historique et annoncées dans les nouveautés.</li>
+          <li>Si quelqu’un a modifié la page sur le site entre-temps, rien n’est écrasé : le texte arrive dans l’onglet Propositions.</li>
+          <li>
+            Personne hors de l’équipe ne peut envoyer : il faut être ajouté au dépôt par Jules <strong>et</strong> être membre de Tsuki avec ce compte relié.
+            Retirer quelqu’un de Tsuki lui coupe aussi l’envoi. Un lecteur, ou une IA qu’il utiliserait, peut seulement lire.
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }

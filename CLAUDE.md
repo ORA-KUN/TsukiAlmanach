@@ -4,12 +4,25 @@ L’Almanach est le site des règles des modes de Tsuki UHC (https://docs-almana
 Les textes vivent dans la base Supabase du projet Tsuki ; ce dépôt contient le site et un miroir des pages publiques.
 On répond et on écrit en français.
 
+## Qui peut écrire
+
+Chaque membre de l’équipe Tsuki peut faire écrire les docs de ses modes par son propre Claude. Il faut :
+- être collaborateur de ce dépôt (Jules l’ajoute) ;
+- avoir relié son compte GitHub dans l’Almanach (Espace équipe › Claude).
+
+Les pages sont signées « Claude pour <pseudo> ». Si l’action « Contenu » échoue avec « n’est relié à aucun membre de Tsuki »,
+la personne doit relier son compte GitHub dans l’Almanach puis relancer l’action (ou pousser à nouveau). Personne d’autre ne peut publier :
+un fork ou une demande de fusion n’envoie rien.
+
 ## Écrire ou corriger une doc
 
-1. Modifier ou créer un fichier dans `contenu/<espace>/` (un dossier par mode, un fichier `.md` par page).
-2. Garder la ligne `revision:` de l’en-tête telle quelle : c’est la version en ligne sur laquelle le texte a été écrit.
-3. Remplir `note:` avec une phrase courte sur ce qui change (elle apparaît dans les Nouveautés).
-4. Pousser sur la branche `claude/project-thread-jhto3d`. L’action « Contenu » envoie seulement les fichiers modifiés.
+1. Partir de la dernière version de la branche principale `claude/project-thread-jhto3d` (`git fetch` puis créer sa branche depuis elle),
+   pour que les numéros `revision:` soient à jour.
+2. Modifier ou créer un fichier dans `contenu/<espace>/` (un dossier par mode, un fichier `.md` par page).
+3. Garder la ligne `revision:` de l’en-tête telle quelle : c’est la version en ligne sur laquelle le texte a été écrit.
+4. Remplir `note:` avec une phrase courte sur ce qui change (elle apparaît dans les Nouveautés).
+5. Pousser sur sa branche de travail (n’importe quelle branche de ce dépôt, par exemple celle que crée la session Claude).
+   L’action « Contenu » envoie seulement les fichiers modifiés depuis le départ de la branche.
 
 Résultat :
 - si `revision` est égale à la version en ligne, la page est publiée tout de suite (signée « Claude » dans l’historique) ;
@@ -19,7 +32,12 @@ Résultat :
 - une page n’est jamais supprimée depuis GitHub : `archived: true` la met à la corbeille.
 
 Après l’envoi, le site est reconstruit automatiquement. Toutes les 15 minutes, l’action « Site » réécrit dans `contenu/`
-les pages modifiées sur le site (avec leur nouvelle `revision`) : toujours `git pull` avant de modifier un fichier.
+de la branche principale les pages modifiées sur le site (avec leur nouvelle `revision`) : toujours repartir d’elle avant de modifier un fichier.
+Pas besoin de fusionner sa branche : ce qui est publié revient tout seul dans la branche principale.
+
+Nouveau mode (par exemple un mode du plugin commun TsukiUHC) : créer `contenu/<adresse>/_espace.md` avec `catalog_key`
+(ligne du tableau des modes de Tsuki) et `mode_id` (id du mode dans le plugin), puis ses pages. Un espace créé depuis GitHub
+est en ligne tout de suite ; mettre `published: false` dans `_espace.md` pour le garder hors ligne le temps de le relire.
 
 Les espaces et pages « Équipe » ne sont jamais dans ce dépôt (il est public) et ne peuvent pas être touchés depuis GitHub.
 

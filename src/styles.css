@@ -2297,6 +2297,40 @@ kbd {
   padding-top: 8px;
   border-top: 1px solid var(--line);
 }
+.steps {
+  margin: 0;
+  padding-left: 22px;
+  display: grid;
+  gap: 10px;
+  max-width: 760px;
+  color: var(--fg-2);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+.steps li::marker {
+  color: var(--accent);
+  font-weight: 650;
+}
+.steps code {
+  white-space: nowrap;
+  font: 0.86em var(--mono);
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--code-bg);
+}
+.steps a {
+  color: var(--accent);
+}
+.github-link {
+  max-width: 520px;
+}
+.github-link__ok {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--done);
+  font-weight: 550;
+}
 .team__h2 {
   margin: 14px 0 8px;
   font: 600 1.35rem/1.25 var(--serif);

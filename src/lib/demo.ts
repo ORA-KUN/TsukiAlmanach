@@ -473,4 +473,16 @@ export class MemoryApi implements Api {
       { seed_key: 'soul-brothers', name: 'Soul Brothers UHC', version: 'V1', creator: 'Guill', mc_version: '1.8.9', status: 'fait', mode_id: 'soul_brothers', doc_url: null },
     ]);
   }
+  private github: string | null = null;
+  async githubLogin() {
+    this.needMember();
+    return this.wait(this.github);
+  }
+  async setGithubLogin(login: string) {
+    this.needMember();
+    const v = login.trim().toLowerCase().replace(/^(https?:\/\/)?(www\.)?github\.com\//, '').replace(/^@/, '').replace(/\/.*$/, '');
+    if (v && !/^[a-z0-9](-?[a-z0-9]){0,38}$/.test(v)) throw new Error('Pseudo GitHub invalide : lettres, chiffres et tirets seulement.');
+    this.github = v || null;
+    return this.wait(this.github);
+  }
 }

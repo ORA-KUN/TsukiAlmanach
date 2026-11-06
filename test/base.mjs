@@ -248,5 +248,30 @@ ok(rep.ignorees[0]?.espace === 'lovecraft' && (await one(`select title from docs
 await as(bob);
 await expectError(() => q(`select docs_git_sync('{"spaces":[]}'::jsonb)`), 'la synchro est réservée à la fonction docs-sync', /permission denied/);
 
+console.log('\n10. Envoi par le Claude des membres (compte GitHub relié)');
+const author = async (login) => { await db.exec(`reset role; set role service_role;`); const r = await q(`select * from docs_git_author($1)`, [login]); await su(); return r[0]; };
+await as(bob);
+ok((await one(`select docs_set_github('https://github.com/Bob-Dev') v`)).v === 'bob-dev', 'un membre relie son compte GitHub (adresse du profil acceptée, mis en minuscules)');
+ok((await author('BOB-DEV'))?.pseudo === 'Bob', 'la fonction d’envoi retrouve le membre à partir du compte GitHub');
+await as(jules);
+await q(`select docs_set_github('@ORA-KUN')`);
+await expectError(() => q(`select docs_set_github('bob-dev')`), 'impossible de prendre le compte GitHub d’un autre membre', /déjà relié/);
+await expectError(() => q(`select docs_set_github('pas un pseudo!')`), 'pseudo invalide refusé', /invalide/);
+await expectError(() => q(`update docs_git_authors set github_login = 'bob-dev' where member_id = $1`, [jules]), 'personne n’écrit directement dans la table', /permission denied/);
+await as(eve);
+await expectError(() => q(`select docs_set_github('eve-hack')`), 'un profil forgé sans invitation ne peut pas relier de compte', /Réservé aux membres/);
+await as(null);
+await expectError(() => q(`select docs_set_github('anon')`), 'un visiteur non plus', /permission denied/);
+await expectError(() => q(`select * from docs_git_authors`), 'un visiteur ne voit pas les comptes reliés', /permission denied/);
+await as(bob);
+await expectError(() => q(`select * from docs_git_author('bob-dev')`), 'seule la fonction d’envoi peut faire la correspondance', /permission denied/);
+ok(!(await author('inconnu')), 'un compte GitHub non relié n’est rattaché à personne : envoi refusé');
+await su();
+await q(`update invitations set email = 'parti@x.fr' where email = 'bob@x.fr'`);
+ok(!(await author('bob-dev')), 'un membre dont l’invitation est retirée ne peut plus envoyer');
+await q(`update invitations set email = 'bob@x.fr' where email = 'parti@x.fr'`);
+await as(bob);
+ok((await one(`select docs_set_github('') v`)).v === null && !(await author('bob-dev')), 'vider le champ délie le compte');
+
 console.log(`\n${pass} réussis, ${fail} échoués`);
 process.exit(fail ? 1 : 0);

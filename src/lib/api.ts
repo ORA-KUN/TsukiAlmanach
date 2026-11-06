@@ -40,6 +40,9 @@ export interface Api {
   uploadImage(file: File, folder: string): Promise<string>;
   stats(sinceDays?: number): Promise<StatRow[]>;
   catalog(): Promise<CatalogRow[]>;
+  // Envoi par Claude depuis GitHub : compte GitHub relié au membre connecté.
+  githubLogin(): Promise<string | null>;
+  setGithubLogin(login: string): Promise<string | null>;
 }
 
 const LITE_COLUMNS = 'id, space_id, parent_id, slug, title, icon, kind, archived, hidden, visibility, revision, published_at, updated_at';
@@ -181,6 +184,16 @@ class SupabaseApi implements Api {
     return (await this.run(
       this.sb.from('catalog').select('seed_key, name, version, creator, mc_version, status, mode_id, doc_url').eq('section', 'uhc').order('name'),
     )) as CatalogRow[];
+  }
+  async githubLogin() {
+    const { data } = await this.sb.auth.getSession();
+    const id = data.session?.user.id;
+    if (!id) return null;
+    const row = (await this.run(this.sb.from('docs_git_authors').select('github_login').eq('member_id', id).maybeSingle())) as { github_login: string | null } | null;
+    return row?.github_login ?? null;
+  }
+  async setGithubLogin(login: string) {
+    return (await this.run(this.sb.rpc('docs_set_github', { p_login: login }))) as string | null;
   }
 }
 
