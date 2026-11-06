@@ -1,9 +1,10 @@
-import { ExternalLink, Gamepad2, Puzzle, Terminal, Users } from 'lucide-react';
+import { Download, ExternalLink, Gamepad2, Puzzle, Terminal, Users } from 'lucide-react';
 import { campColor } from "../lib/markdown.ts";
 import { slugify } from "../lib/slug.ts";
 import { STATUS_LABEL, type Overview, type Space } from '../lib/types.ts';
 import { href } from '../router.ts';
 import { ago, plural } from '../lib/format.ts';
+import { packFor } from '../lib/packs.ts';
 import { SpaceIcon } from './Icon.tsx';
 
 export function StatusPill({ status }: { status: string | undefined }) {
@@ -18,6 +19,7 @@ export function ModeHeader({ space, status, overview }: { space: Space; status?:
   if (space.mc_version) facts.push({ icon: <Gamepad2 size={15} />, label: 'Minecraft', value: space.mc_version });
   if (space.command) facts.push({ icon: <Terminal size={15} />, label: 'Commande', value: space.command });
   if (space.universe) facts.push({ icon: <Puzzle size={15} />, label: 'Univers', value: space.universe });
+  const pack = packFor(space.slug);
   return (
     <header className="modehead" style={{ ['--space' as string]: space.color }}>
       {space.cover_url && <img className="modehead__cover" src={space.cover_url} alt="" />}
@@ -53,6 +55,16 @@ export function ModeHeader({ space, status, overview }: { space: Space; status?:
               {c.name}
             </a>
           ))}
+        </div>
+      )}
+      {pack && (
+        <div className="modehead__actions">
+          <a className="btn" href={pack.url} download={pack.file}>
+            <Download size={16} /> Télécharger le pack
+          </a>
+          <span className="modehead__packinfo">
+            Pack de textures · {pack.size}
+          </span>
         </div>
       )}
       <p className="modehead__meta">

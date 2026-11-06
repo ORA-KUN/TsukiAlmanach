@@ -44,6 +44,8 @@ export function readContenu(only?: string[]): SpacePayload[] {
     if (slug === '_espace') {
       const meta: Front = {};
       for (const k of SPACE_KEYS) if (k in data) meta[k] = data[k];
+      // « published: false » garde un nouvel espace hors ligne (jamais réécrit par le miroir).
+      if (typeof data.published === 'boolean') meta.published = data.published;
       entry.meta = meta;
       continue;
     }

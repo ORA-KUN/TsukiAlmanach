@@ -911,6 +911,17 @@ kbd {
   gap: 8px;
   margin-top: 16px;
 }
+.modehead__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: 18px;
+}
+.modehead__packinfo {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
 .camp {
   display: inline-flex;
   align-items: center;

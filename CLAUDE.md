@@ -39,6 +39,11 @@ Nouveau mode (par exemple un mode du plugin commun TsukiUHC) : créer `contenu/<
 (ligne du tableau des modes de Tsuki) et `mode_id` (id du mode dans le plugin), puis ses pages. Un espace créé depuis GitHub
 est en ligne tout de suite ; mettre `published: false` dans `_espace.md` pour le garder hors ligne le temps de le relire.
 
+Pack de textures d’un mode : déposer le zip dans `public/packs/<adresse-du-mode>/<Nom>.zip` (un seul zip par dossier).
+Le bouton « Télécharger le pack » apparaît tout seul dans la fiche du mode, et le fichier répond sur
+`https://docs-almanach.fr/packs/<adresse-du-mode>/<Nom>.zip` (adresse utilisable aussi comme pack du serveur).
+Le site ne se construit que depuis la branche principale : un pack poussé sur une autre branche doit y être fusionné.
+
 Les espaces et pages « Équipe » ne sont jamais dans ce dépôt (il est public) et ne peuvent pas être touchés depuis GitHub.
 
 ## En-têtes
