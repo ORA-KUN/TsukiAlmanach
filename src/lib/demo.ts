@@ -3,7 +3,7 @@
 import type { Api, DraftInput, PagePatch, PublishInput, SpacePatch } from './api.ts';
 import { extractRoles } from './markdown.ts';
 import { slugify } from './slug.ts';
-import type { CatalogRow, ChangelogEntry, Draft, Member, Overview, Page, PageLite, Revision, SearchHit, Space, SpaceStatus, StatRow } from './types.ts';
+import type { AdminMember, CatalogRow, ChangelogEntry, Draft, Member, Overview, Page, PageLite, Revision, SearchHit, Space, SpaceStatus, StatRow } from './types.ts';
 
 const now = () => new Date().toISOString();
 const uid = () => (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36));
@@ -483,6 +483,57 @@ export class MemoryApi implements Api {
     const v = login.trim().toLowerCase().replace(/^(https?:\/\/)?(www\.)?github\.com\//, '').replace(/^@/, '').replace(/\/.*$/, '');
     if (v && !/^[a-z0-9](-?[a-z0-9]){0,38}$/.test(v)) throw new Error('Pseudo GitHub invalide : lettres, chiffres et tirets seulement.');
     this.github = v || null;
+    this.team[0].github_login = this.github;
     return this.wait(this.github);
+  }
+
+  // Onglet Membres : mêmes règles que la base (docs_0006).
+  private team: AdminMember[] = [
+    { id: 'demo', pseudo: 'Ora (démo)', mc_name: 'Notch', email: 'demo@tsuki.local', role: 'admin', member: true, github_login: null, last_sign_in_at: now(), created_at: days(2) },
+    { id: 'r2', pseudo: 'R2-Neeko', mc_name: 'jeb_', email: 'r2@exemple.fr', role: 'admin', member: true, github_login: 'r2-neeko', last_sign_in_at: days(1), created_at: days(2) },
+    { id: 'jo', pseudo: 'Joseph', mc_name: null, email: 'joseph@exemple.fr', role: 'membre', member: true, github_login: null, last_sign_in_at: null, created_at: days(0) },
+  ];
+  private needAdmin() {
+    if (!this.member?.admin) throw new Error('Réservé aux admins.');
+  }
+  private teamMember(id: string, protect?: string) {
+    const m = this.team.find((x) => x.id === id);
+    if (!m) throw new Error('Compte introuvable.');
+    if (protect && id !== 'demo' && m.role === 'admin') throw new Error(protect);
+    return m;
+  }
+  async adminMembers() {
+    this.needAdmin();
+    return this.wait([...this.team].sort((a, b) => Number(b.role === 'admin') - Number(a.role === 'admin') || a.pseudo.localeCompare(b.pseudo)));
+  }
+  async adminSetEmail(id: string, email: string) {
+    this.needAdmin();
+    const v = email.trim().toLowerCase();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) throw new Error('Adresse e-mail invalide.');
+    const m = this.teamMember(id, 'Impossible de changer l’adresse d’un autre admin : retire-lui d’abord le rôle admin.');
+    if (this.team.some((x) => x.id !== id && x.email === v)) throw new Error('Cette adresse est déjà utilisée par un autre compte.');
+    m.email = v;
+    return this.wait(v);
+  }
+  async adminSetPassword(id: string, password: string) {
+    this.needAdmin();
+    this.teamMember(id, 'Impossible de changer le mot de passe d’un autre admin.');
+    if (password.length < 8) throw new Error('Le mot de passe doit faire au moins 8 caractères.');
+    await this.wait(null);
+  }
+  async adminSetRole(id: string, role: AdminMember['role']) {
+    this.needAdmin();
+    if (id === 'demo' && role !== 'admin') throw new Error('Tu ne peux pas retirer ton propre rôle admin.');
+    this.teamMember(id).role = role;
+    return this.wait(role);
+  }
+  async adminSetGithub(id: string, login: string) {
+    this.needAdmin();
+    const v = login.trim().toLowerCase().replace(/^(https?:\/\/)?(www\.)?github\.com\//, '').replace(/^@/, '').replace(/\/.*$/, '') || null;
+    if (v && !/^[a-z0-9](-?[a-z0-9]){0,38}$/.test(v)) throw new Error('Pseudo GitHub invalide : lettres, chiffres et tirets seulement.');
+    if (v && this.team.some((x) => x.id !== id && x.github_login === v)) throw new Error('Ce compte GitHub est déjà relié à un autre membre.');
+    this.teamMember(id).github_login = v;
+    if (id === 'demo') this.github = v;
+    return this.wait(v);
   }
 }

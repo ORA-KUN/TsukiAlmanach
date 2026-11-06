@@ -1,14 +1,14 @@
-import { ArchiveRestore, BarChart3, CheckCircle2, FilePen, FolderPlus, GitBranch, Inbox, Library, LogOut, Sparkles, Trash2 } from 'lucide-react';
+import { ArchiveRestore, BarChart3, CheckCircle2, FilePen, FolderPlus, GitBranch, Inbox, KeyRound, Library, LogOut, Mail, ShieldCheck, Sparkles, Trash2, UserCog, Users } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { Head, SpaceIcon } from '../components/Icon.tsx';
 import { friendlyError } from '../lib/api.ts';
 import { ago, plural } from '../lib/format.ts';
 import { slugify } from '../lib/slug.ts';
 import { invalidate, useData, useOverview, useSession, useSpaces } from '../lib/store.ts';
-import type { CatalogRow, Draft, PageLite, Space, StatRow } from '../lib/types.ts';
+import type { AdminMember, CatalogRow, Draft, PageLite, Space, StatRow } from '../lib/types.ts';
 import { href, navigate } from '../router.ts';
 import { setTitle } from '../views/SpaceView.tsx';
-import { Field, SourcePill, toast, Toasts } from './ui.tsx';
+import { Field, Modal, SourcePill, toast, Toasts } from './ui.tsx';
 
 export function usePageIndex() {
   const { api } = useSession();
@@ -66,13 +66,15 @@ const TABS = [
   { id: 'corbeille', label: 'Corbeille', icon: <Trash2 size={16} /> },
   { id: 'nouvel-espace', label: 'Nouvel espace', icon: <FolderPlus size={16} /> },
   { id: 'claude', label: 'Claude', icon: <Sparkles size={16} /> },
+  { id: 'membres', label: 'Membres', icon: <Users size={16} />, admin: true },
 ];
 
 export default function Team({ tab }: { tab: string }) {
   const { member, api } = useSession();
   useEffect(() => setTitle('Espace équipe'), []);
   if (!member) return <Login />;
-  const current = TABS.find((t) => t.id === tab) ?? TABS[0];
+  const tabs = TABS.filter((t) => !t.admin || member.admin);
+  const current = tabs.find((t) => t.id === tab) ?? tabs[0];
   return (
     <main className="team" id="contenu">
       <header className="team__head">
@@ -97,7 +99,7 @@ export default function Team({ tab }: { tab: string }) {
         </button>
       </header>
       <nav className="team__tabs" aria-label="Rubriques">
-        {TABS.map((t) => (
+        {tabs.map((t) => (
           <a key={t.id} href={href(`/equipe${t.id ? '/' + t.id : ''}`)} className={t.id === current.id ? 'is-on' : ''}>
             {t.icon}
             {t.label}
@@ -110,6 +112,7 @@ export default function Team({ tab }: { tab: string }) {
       {current.id === 'corbeille' && <Trash />}
       {current.id === 'nouvel-espace' && <NewSpace />}
       {current.id === 'claude' && <WithClaude />}
+      {current.id === 'membres' && <Members />}
       <Toasts />
     </main>
   );
@@ -543,5 +546,162 @@ function WithClaude() {
         </ul>
       </section>
     </div>
+  );
+}
+
+// Onglet réservé aux admins : corriger l'adresse, le mot de passe, le rôle et le compte GitHub des membres.
+// La base revérifie tout (docs_admin_*, admin_set_password) : ce n'est qu'un écran.
+function Members() {
+  const { api, member } = useSession();
+  const list = useData<AdminMember[]>('team:members', () => api.adminMembers());
+  const [editing, setEditing] = useState<AdminMember | null>(null);
+  if (list.error) return <p className="form__error">{list.error}</p>;
+  if (!list.data) return <span className="sk sk--block" />;
+  const current = editing && list.data.find((m) => m.id === editing.id);
+  return (
+    <div className="team__panel">
+      <section>
+        <h2 className="team__h2">Membres de l’équipe</h2>
+        <p className="muted small">
+          Les comptes Tsuki, communs à l’application et à l’Almanach. Inviter ou supprimer un compte se fait dans Tsuki (Équipe › Invitations).
+          Pour protéger les comptes, l’adresse et le mot de passe d’un autre admin ne se changent pas : retire-lui d’abord le rôle admin.
+        </p>
+        <ul className="rows">
+          {list.data.map((m) => (
+            <li key={m.id} className="row">
+              {m.mc_name ? <Head name={m.mc_name} size={36} /> : <span className="member__initial">{m.pseudo.slice(0, 1).toUpperCase()}</span>}
+              <div className="row__main">
+                <p className="row__title">
+                  {m.pseudo}
+                  {m.id === member?.id && <span className="muted small"> (toi)</span>}{' '}
+                  {m.role === 'admin' && (
+                    <span className="pill pill--team">
+                      <ShieldCheck size={12} /> Admin
+                    </span>
+                  )}{' '}
+                  {!m.member && <span className="pill pill--warn">Accès coupé</span>}
+                </p>
+                <p className="row__meta">
+                  <span>{m.email}</span>
+                  <span>·</span>
+                  <span>{m.github_login ? `GitHub @${m.github_login}` : 'pas de GitHub relié'}</span>
+                  <span>·</span>
+                  <span>{m.last_sign_in_at ? `connecté ${ago(m.last_sign_in_at)}` : 'jamais connecté'}</span>
+                </p>
+              </div>
+              <button className="btn btn--ghost btn--sm" onClick={() => setEditing(m)}>
+                <UserCog size={14} /> Modifier
+              </button>
+            </li>
+          ))}
+        </ul>
+      </section>
+      {current && <MemberEditor m={current} self={current.id === member?.id} onClose={() => setEditing(null)} />}
+    </div>
+  );
+}
+
+function newPassword() {
+  const abc = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789';
+  const bytes = crypto.getRandomValues(new Uint8Array(12));
+  return Array.from(bytes, (b) => abc[b % abc.length]).join('');
+}
+
+function MemberEditor({ m, self, onClose }: { m: AdminMember; self: boolean; onClose: () => void }) {
+  const { api, refreshMember } = useSession();
+  const [email, setEmail] = useState(m.email);
+  const [password, setPassword] = useState('');
+  const [github, setGithub] = useState(m.github_login ?? '');
+  const [busy, setBusy] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const locked = !self && m.role === 'admin';
+  const run = async (key: string, fn: () => Promise<string>) => {
+    setBusy(key);
+    setError(null);
+    try {
+      const msg = await fn();
+      invalidate('team:members');
+      if (self) invalidate('team:github');
+      toast(msg);
+    } catch (err) {
+      setError(friendlyError(err));
+    } finally {
+      setBusy(null);
+    }
+  };
+  return (
+    <Modal title={`Compte de ${m.pseudo}`} onClose={onClose}>
+      <div className="member-edit">
+        {locked && <p className="warnbox small">{m.pseudo} est admin : son adresse et son mot de passe sont protégés. Passe-le en membre pour les corriger.</p>}
+        <form className="form" onSubmit={(e) => (e.preventDefault(), run('email', async () => `Adresse de ${m.pseudo} : ${await api.adminSetEmail(m.id, email)}`))}>
+          <Field label="Adresse e-mail" hint="Celle qu’il utilise pour se connecter. Son invitation suit automatiquement.">
+            <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={locked} autoComplete="off" />
+          </Field>
+          <div className="form__actions">
+            <button className="btn btn--sm" disabled={locked || busy !== null || email.trim().toLowerCase() === m.email}>
+              <Mail size={14} /> {busy === 'email' ? 'Enregistrement…' : 'Changer l’adresse'}
+            </button>
+          </div>
+        </form>
+        <form
+          className="form"
+          onSubmit={(e) => (
+            e.preventDefault(),
+            run('password', async () => {
+              await api.adminSetPassword(m.id, password);
+              return `Mot de passe provisoire enregistré : envoie-le à ${m.pseudo}, il pourra le changer dans Tsuki.`;
+            })
+          )}
+        >
+          <Field label="Mot de passe provisoire" hint="8 caractères minimum. Transmets-le au membre en privé ; il le change ensuite dans Tsuki (Paramètres › Mon compte).">
+            <div className="member-edit__pw">
+              <input className="input" value={password} onChange={(e) => setPassword(e.target.value)} disabled={locked} autoComplete="new-password" spellCheck={false} />
+              <button type="button" className="btn btn--ghost btn--sm" disabled={locked} onClick={() => setPassword(newPassword())}>
+                Générer
+              </button>
+            </div>
+          </Field>
+          <div className="form__actions">
+            <button className="btn btn--sm" disabled={locked || busy !== null || password.length < 8}>
+              <KeyRound size={14} /> {busy === 'password' ? 'Enregistrement…' : 'Changer le mot de passe'}
+            </button>
+          </div>
+        </form>
+        <form className="form" onSubmit={(e) => (e.preventDefault(), run('github', async () => {
+          const v = await api.adminSetGithub(m.id, github);
+          return v ? `Compte GitHub @${v} relié à ${m.pseudo}.` : `Compte GitHub de ${m.pseudo} délié.`;
+        }))}>
+          <Field label="Compte GitHub" hint="Pour l’envoi de pages par son Claude. Vide le champ pour délier.">
+            <input className="input" value={github} onChange={(e) => setGithub(e.target.value)} placeholder="pseudo-github" autoComplete="off" spellCheck={false} />
+          </Field>
+          <div className="form__actions">
+            <button className="btn btn--sm" disabled={busy !== null || github.trim().toLowerCase() === (m.github_login ?? '')}>
+              <GitBranch size={14} /> {busy === 'github' ? 'Enregistrement…' : github.trim() ? 'Relier' : 'Délier'}
+            </button>
+          </div>
+        </form>
+        <div className="form">
+          <span className="form__label">Rôle</span>
+          <div className="form__actions">
+            <button
+              className="btn btn--ghost btn--sm"
+              disabled={busy !== null || self}
+              title={self ? 'Tu ne peux pas retirer ton propre rôle admin.' : ''}
+              onClick={() =>
+                run('role', async () => {
+                  const r = await api.adminSetRole(m.id, m.role === 'admin' ? 'membre' : 'admin');
+                  if (self) await refreshMember();
+                  return r === 'admin' ? `${m.pseudo} est maintenant admin.` : `${m.pseudo} est maintenant membre.`;
+                })
+              }
+            >
+              <ShieldCheck size={14} /> {m.role === 'admin' ? 'Passer en membre' : 'Passer admin'}
+            </button>
+            <span className="muted small">{m.role === 'admin' ? 'Admin : gère l’équipe, les espaces et les invitations.' : 'Membre : écrit et relit les docs.'}</span>
+          </div>
+        </div>
+        {error && <p className="form__error">{error}</p>}
+      </div>
+    </Modal>
   );
 }
