@@ -46,12 +46,12 @@
       .ch-s1 { stop-color: var(--l1); }
       .ch-s2 { stop-color: var(--l2); }
       .ch-ombre { animation: ch-phase 1.5s ease-in-out infinite alternate; }
-      .ch-vague { stroke-dasharray: 24; animation: ch-vague 1.5s ease-in-out infinite; }
+      .ch-vague { stroke-dasharray: 23 40; animation: ch-vague 1.5s ease-in-out infinite; }
       .ch-nom { font: 600 15px/1 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; letter-spacing: 0.02em; opacity: 0.7; }
       @keyframes ch-in { to { opacity: 1; } }
       /* L'ombre glisse : pleine lune, puis croissant (les phases d'un almanach). */
       @keyframes ch-phase { from { transform: translate(13px, -5px); } to { transform: none; } }
-      @keyframes ch-vague { 0% { stroke-dashoffset: 24; } 50% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -24; } }
+      @keyframes ch-vague { 0% { stroke-dashoffset: 25.5; } 50% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -25.5; } }
       @media (prefers-reduced-motion: reduce) {
         .ch-ombre, .ch-vague { animation: none; }
         .ch-vague { stroke-dasharray: none; }
