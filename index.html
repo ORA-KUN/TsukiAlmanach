@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Almanach · Les règles des modes UHC de Tsuki</title>
     <meta name="description" content="Le livre des règles des modes UHC de Tsuki : modes, rôles, camps et nouveautés." />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0f1014" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fbfaff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#060914" media="(prefers-color-scheme: dark)" />
     <script>
       try {
         var t = localStorage.getItem('almanach-theme');
@@ -26,19 +26,19 @@
         inset: 0;
         z-index: 100;
         place-items: center;
-        background: #fff;
-        color: #15171c;
-        --l1: #5b8def;
-        --l2: #7a5ce6;
+        background: #fbfaff;
+        color: #0d1026;
+        --l1: #2c74d8;
+        --l2: #7350d8;
       }
       [data-theme='nuit'] #chargement {
-        background: #0f1014;
-        color: #eceef2;
+        background: #060914;
+        color: #eff1fc;
         --l1: #8cc4ff;
         --l2: #b49cff;
       }
-      html.chargement body { background: #fff; }
-      html.chargement[data-theme='nuit'] body { background: #0f1014; }
+      html.chargement body { background: #fbfaff; }
+      html.chargement[data-theme='nuit'] body { background: #060914; }
       html.chargement #chargement { display: grid; }
       html.chargement #root .static { display: none; }
       .ch { display: flex; flex-direction: column; align-items: center; gap: 14px; opacity: 0; animation: ch-in 0.25s ease 0.12s forwards; }

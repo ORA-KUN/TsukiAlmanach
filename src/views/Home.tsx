@@ -67,7 +67,7 @@ export function Home({ onSearch, menuOpen, setMenuOpen }: { onSearch: () => void
       <main className="main home" id="contenu">
       <header className="home__head">
         <h1 className="article__title home__title">
-          <Logo size={40} /> Almanach
+          <Logo size={40} /> <span className="home__name">Almanach</span>
         </h1>
         <p className="article__lead">Toutes les règles des modes UHC de Tsuki, du lancement de la partie jusqu’au dernier rôle.</p>
         <button className="home__search" onClick={onSearch}>
