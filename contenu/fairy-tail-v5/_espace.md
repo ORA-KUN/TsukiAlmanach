@@ -15,7 +15,7 @@ camps: [{"name":"Fairy Tail","color":"#e5484d"},{"name":"Sabertooth","color":"#3
 catalog_key: uhc-x2
 mode_id: fairy_tail_v5
 position: 120
-updated_at: 2026-11-06T13:21:25.178192+00:00
+updated_at: 2026-11-06T14:17:51.799321+00:00
 ---
 
 Fiche de l’espace. Le texte sous l’en-tête n’est pas publié.
