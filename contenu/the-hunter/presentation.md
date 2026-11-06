@@ -2,7 +2,7 @@
 title: Présentation
 description: Chacun a une cible et un chasseur.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Chacun a une cible et un chasseur. La boussole pointe vers ta proie, et chaque kill donne ou retire des effets.

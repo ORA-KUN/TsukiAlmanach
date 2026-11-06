@@ -2,7 +2,7 @@
 title: Présentation
 description: "La suite de la V1.5 : dix équipages, le CP-0, les Ponéglyphes et Oden, un navire par capitaine, sur une nouvelle carte de Wano Kuni."
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 La suite de la V1.5 : dix équipages, le CP-0, les Ponéglyphes et Oden, un navire par capitaine, sur une nouvelle carte de Wano Kuni.

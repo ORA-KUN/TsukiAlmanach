@@ -2,7 +2,7 @@
 title: Présentation
 description: Nourris les Goinfres de fragments d'étoile pour ouvrir de nouvelles galaxies et voyage d'une planète à l'autre avec les étoiles propulseuses.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Nourris les Goinfres de fragments d'étoile pour ouvrir de nouvelles galaxies et voyage d'une planète à l'autre avec les étoiles propulseuses.

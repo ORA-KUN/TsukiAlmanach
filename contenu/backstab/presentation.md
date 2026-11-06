@@ -2,7 +2,7 @@
 title: Présentation
 description: On ne peut toucher un joueur que dans le dos, à l'épée comme à l'arc.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 On ne peut toucher un joueur que dans le dos, à l'épée comme à l'arc. Chaque combat devient une affaire de placement.

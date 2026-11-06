@@ -2,7 +2,7 @@
 title: Présentation
 description: Chaque coéquipier commence seul dans un monde différent.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Chaque coéquipier commence seul dans un monde différent. Au bout d'une heure, tout le monde se retrouve dans un dernier monde : l'équipe se reforme et doit éliminer les autres.

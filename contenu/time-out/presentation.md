@@ -2,7 +2,7 @@
 title: Présentation
 description: Ton temps de vie s'écoule à chaque seconde.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Ton temps de vie s'écoule à chaque seconde. Crafte, tue et commerce pour en gagner : à zéro, c'est fini.

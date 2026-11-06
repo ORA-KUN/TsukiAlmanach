@@ -2,7 +2,7 @@
 title: Présentation
 description: "Un joueur tué rejoint l'équipe de son tueur : il perd une vie, le tueur en gagne une."
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Un joueur tué rejoint l'équipe de son tueur : il perd une vie, le tueur en gagne une. On joue jusqu'à ce qu'il ne reste qu'une équipe.

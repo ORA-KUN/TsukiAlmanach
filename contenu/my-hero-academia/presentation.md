@@ -2,7 +2,7 @@
 title: Présentation
 description: Héros, Vilains, Préceptes de la Mort et Solitaires, chacun avec son Alter.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Héros, Vilains, Préceptes de la Mort et Solitaires, chacun avec son Alter. Le dernier camp en vie gagne.

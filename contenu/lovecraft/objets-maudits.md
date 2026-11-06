@@ -4,6 +4,7 @@ icon: 📿
 description: "Un objet par Grand Ancien, caché dans une crypte : bonus, effets et traque."
 parent: regles
 position: 6
+revision: 1
 ---
 
 Chaque Grand Ancien en jeu a son objet maudit. Le premier apparaît à 25:00, puis un toutes les 6 minutes, dans une Crypte oubliée construite à un endroit au hasard (entre 150 blocs du centre et 70 % du rayon de la bordure).

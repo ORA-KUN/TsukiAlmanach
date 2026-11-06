@@ -2,7 +2,7 @@
 title: Présentation
 description: En équipes, et à intervalles réguliers un joueur de chaque équipe est échangé avec celui d'une autre.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 En équipes, et à intervalles réguliers un joueur de chaque équipe est échangé avec celui d'une autre.

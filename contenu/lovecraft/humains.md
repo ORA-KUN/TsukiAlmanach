@@ -4,6 +4,7 @@ icon: 🕯️
 description: "Les Investigateurs et leurs professions : bonus et compétences."
 parent: roles
 position: 0
+revision: 1
 ---
 
 Chaque Humain reçoit une profession, 2 fois au plus par partie. Les objets de compétence sont donnés à l'annonce des rôles et ne tombent pas à la mort.

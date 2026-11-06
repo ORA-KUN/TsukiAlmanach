@@ -2,7 +2,7 @@
 title: Présentation
 description: Survie, bingo, jump et PvP à Poudlard.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Survie, bingo, jump et PvP à Poudlard. Les maisons sont tirées en secret et la victoire se joue aux points.

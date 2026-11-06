@@ -4,6 +4,7 @@ icon: 🔭
 description: Lire la fiche d’un joueur, l’affinité avec les Anciens et la conversion.
 parent: regles
 position: 3
+revision: 1
 ---
 
 **Longue-vue.** Objet à crafter : 4 lingots d'or en croix autour d'une vitre. Clic droit en visant un joueur à 40 blocs ou moins : un menu ouvre sa fiche. Recharge : 5 minutes.

@@ -2,7 +2,7 @@
 title: Présentation
 description: "Équipes de 6 : quatre enfants, un méchant caché dans l'équipe et un méchant solo."
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Équipes de 6 : quatre enfants, un méchant caché dans l'équipe et un méchant solo. Mensonges et trahisons jusqu'à la dernière équipe.

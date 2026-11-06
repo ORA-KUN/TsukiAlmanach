@@ -2,7 +2,7 @@
 title: Présentation
 description: Gardiens, Fragments, Oracles et solos se croisent autour d'un château flottant.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Gardiens, Fragments, Oracles et solos se croisent autour d'un château flottant.

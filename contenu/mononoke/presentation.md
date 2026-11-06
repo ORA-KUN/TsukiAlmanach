@@ -2,7 +2,7 @@
 title: Présentation
 description: Le Village, la Forêt, la Cité de Fer et les Solitaires se disputent la forêt du Dieu-Cerf.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Le Village, la Forêt, la Cité de Fer et les Solitaires se disputent la forêt du Dieu-Cerf.

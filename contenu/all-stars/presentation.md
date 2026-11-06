@@ -2,7 +2,7 @@
 title: Présentation
 description: Des héros et des méchants venus de plusieurs mangas se croisent sur la même carte.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Des héros et des méchants venus de plusieurs mangas se croisent sur la même carte. Protagonistes, Antagonistes et Divergents s'affrontent, pendant que solos et duos jouent leur propre partie.

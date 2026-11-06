@@ -2,7 +2,7 @@
 title: Présentation
 description: Camp Mario, camp Bowser et solitaires, avec les Xhampis, des boss et Toad.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Camp Mario, camp Bowser et solitaires, avec les Xhampis, des boss et Toad.

@@ -2,7 +2,7 @@
 title: Présentation
 description: 64 rôles, avec les Épéistes, les Kages et les Bijûs.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 64 rôles, avec les Épéistes, les Kages et les Bijûs.

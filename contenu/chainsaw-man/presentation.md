@@ -2,7 +2,7 @@
 title: Présentation
 description: Chacun scelle des pactes avec des Démons et les paie de ses cœurs, et chaque pouvoir coûte du Sang.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Chacun scelle des pactes avec des Démons et les paie de ses cœurs, et chaque pouvoir coûte du Sang. Quand il ne reste qu'un tiers des joueurs, tout le monde part dans un monde spécial.

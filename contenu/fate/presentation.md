@@ -2,7 +2,7 @@
 title: Présentation
 description: "La Guerre du Graal en duo : chaque Master est lié à son Servant, parmi 22 Servants."
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 La Guerre du Graal en duo : chaque Master est lié à son Servant, parmi 22 Servants. Quand un Servant tombe, il rejoint le Trône des Héros.

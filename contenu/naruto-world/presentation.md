@@ -2,7 +2,7 @@
 title: Présentation
 description: Konoha, ses missions et l'Akatsuki en embuscade.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Konoha, ses missions et l'Akatsuki en embuscade.

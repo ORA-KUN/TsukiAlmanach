@@ -4,6 +4,7 @@ icon: 🛕
 description: Les huit temples, les prières aux autels et les Fragments stellaires.
 parent: regles
 position: 4
+revision: 1
 ---
 
 Huit temples, un par Grand Ancien, forment un anneau à 80 blocs du centre, un tous les 45 degrés. Ils sont construits au lancement et protégés (on ne casse pas leurs blocs). L'autel de chacun est un cadre de portail de l'End.

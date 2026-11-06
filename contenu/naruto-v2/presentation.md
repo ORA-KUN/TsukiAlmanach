@@ -2,7 +2,7 @@
 title: Présentation
 description: Le monde ninja avec le Hokage et les Bijûs.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Le monde ninja avec le Hokage et les Bijûs. Les rôles tombent à l'épisode 2 et le dernier camp en vie gagne.

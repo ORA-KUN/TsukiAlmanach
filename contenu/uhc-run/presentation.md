@@ -2,7 +2,7 @@
 title: Présentation
 description: "Tout va plus vite avant le PvP : minerais doublés, objets facilités et un petit Nether prêt à l'emploi."
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Tout va plus vite avant le PvP : minerais doublés, objets facilités et un petit Nether prêt à l'emploi.

@@ -2,7 +2,7 @@
 title: Présentation
 description: Les capitaines achètent les joueurs aux enchères avec leur budget de diamants, puis place à un UHC classique.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Les capitaines achètent les joueurs aux enchères avec leur budget de diamants, puis place à un UHC classique.

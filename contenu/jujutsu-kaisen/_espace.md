@@ -12,6 +12,7 @@ command: /jjk
 catalog_key: uhc-047
 mode_id: jujutsu_kaisen
 position: 160
+updated_at: 2026-11-05T23:47:09.72116+00:00
 ---
 
 Fiche de l’espace. Le texte sous l’en-tête n’est pas publié.

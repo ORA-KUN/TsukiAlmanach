@@ -2,7 +2,7 @@
 title: Présentation
 description: "Chaque objet en donne toujours un autre, tiré au sort à chaque partie : il faut réapprendre à jouer."
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Chaque objet en donne toujours un autre, tiré au sort à chaque partie : il faut réapprendre à jouer.

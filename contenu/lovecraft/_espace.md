@@ -13,6 +13,7 @@ camps: [{"name":"Humains","color":"#f5b85b"},{"name":"Grands Anciens","color":"#
 catalog_key: uhc-056
 mode_id: lovecraft
 position: 190
+updated_at: 2026-11-05T23:58:34.85791+00:00
 ---
 
 Fiche de l’espace. Le texte sous l’en-tête n’est pas publié.

@@ -2,7 +2,7 @@
 title: Présentation
 description: Avengers, Hydra, l'Ordre Noir et Ultron se disputent les Pierres d'Infinité.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Avengers, Hydra, l'Ordre Noir et Ultron se disputent les Pierres d'Infinité. Loki choisit son camp, ou joue seul.

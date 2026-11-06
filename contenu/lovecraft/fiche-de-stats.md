@@ -4,6 +4,7 @@ icon: 🎲
 description: "Les cinq stats tirées au hasard : Constitution, Dextérité, Intelligence, Perception, Pouvoir."
 parent: regles
 position: 1
+revision: 1
 ---
 
 Chaque joueur a cinq stats de 0 à 10 : 10 points sont répartis au hasard à l'annonce des rôles (5 au plus dans une même stat), puis le rôle ajoute ses bonus. Les objets maudits et les autels peuvent encore les monter. `/l stats` affiche sa fiche.

@@ -2,7 +2,7 @@
 title: Présentation
 description: Des équipes de couleur, des pouvoirs tirés au sort (Double Vie, Résistance, Force, Vitesse…) et des malus pour pimenter le tout.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Des équipes de couleur, des pouvoirs tirés au sort (Double Vie, Résistance, Force, Vitesse…) et des malus pour pimenter le tout.

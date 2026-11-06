@@ -2,7 +2,7 @@
 title: Présentation
 description: "Le dernier chapitre de la Saga de l'Infini : les Avengers, l'Ordre Noir de Thanos et les Krees, HYDRA, et Loki, Ultron et Ego en solo, autour des six Pierres."
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Le dernier chapitre de la Saga de l'Infini : les Avengers, l'Ordre Noir de Thanos et les Krees, HYDRA, et Loki, Ultron et Ego en solo, autour des six Pierres.

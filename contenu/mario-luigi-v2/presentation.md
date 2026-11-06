@@ -2,7 +2,7 @@
 title: Présentation
 description: "La suite : des pouvoirs (Cappy, Green Missile…), des pièces à dépenser à la boutique et des boss en arène."
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 La suite : des pouvoirs (Cappy, Green Missile…), des pièces à dépenser à la boutique et des boss en arène.

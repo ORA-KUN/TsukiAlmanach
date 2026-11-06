@@ -2,7 +2,7 @@
 title: Présentation
 description: Les quatre éléments, l'Union Stellaire, le Duo Astral et deux solos s'affrontent sous le regard de la Lune.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Les quatre éléments, l'Union Stellaire, le Duo Astral et deux solos s'affrontent sous le regard de la Lune.

@@ -2,8 +2,7 @@
 title: Présentation
 description: Des Investigateurs traquent les Grands Anciens, des dieux qui rendent fous leurs ennemis.
 position: 0
-revision: 1
-note: Présentation complète du mode
+revision: 2
 ---
 
 Lovecraft UHC est un mode à rôles où des Investigateurs humains traquent les Grands Anciens, des dieux venus d'ailleurs qui ont pris chair dans certains joueurs et rendent fous leurs ennemis. Il se joue sur TsukiUHC (Minecraft 1.8.9), commande `/l`.

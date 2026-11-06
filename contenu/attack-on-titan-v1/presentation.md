@@ -2,7 +2,7 @@
 title: Présentation
 description: "La première saison : équipement tridimensionnel, Titans et trois camps cachés parmi les joueurs."
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 La première saison : équipement tridimensionnel, Titans et trois camps cachés parmi les joueurs. Le dernier camp en vie l'emporte.

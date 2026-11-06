@@ -2,7 +2,7 @@
 title: Présentation
 description: "Le UHC de base, sans rôles, en solo ou en équipes : pas de régénération naturelle, et le dernier en vie gagne."
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Le UHC de base, sans rôles, en solo ou en équipes : pas de régénération naturelle, et le dernier en vie gagne.

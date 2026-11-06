@@ -2,7 +2,7 @@
 title: Présentation
 description: La Quatrième Grande Guerre Ninja, avec 56 rôles.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 La Quatrième Grande Guerre Ninja, avec 56 rôles.

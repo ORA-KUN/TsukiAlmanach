@@ -2,7 +2,7 @@
 title: Présentation
 description: Les grottes sont ouvertes sous toute la carte et le plafond descend petit à petit, en même temps que la bordure.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Les grottes sont ouvertes sous toute la carte et le plafond descend petit à petit, en même temps que la bordure.

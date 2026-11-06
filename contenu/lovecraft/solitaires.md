@@ -4,6 +4,7 @@ icon: 🌘
 description: Herbert West, Wilbur Whateley, Abdul Alhazred, et ce que deviennent les convertis.
 parent: roles
 position: 2
+revision: 1
 ---
 
 Trois Solitaires possibles, tirés au hasard selon la composition. Un Solitaire gagne seul, ne peut pas être converti et ne subit aucun malus de Folie la nuit.

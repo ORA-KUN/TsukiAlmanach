@@ -4,6 +4,7 @@ icon: 🐙
 description: Les huit dieux possibles, leurs bonus et leurs compétences.
 parent: roles
 position: 1
+revision: 1
 ---
 
 Huit Grands Anciens possibles, chacun une seule fois.

@@ -2,7 +2,7 @@
 title: Présentation
 description: Baguettes magiques, muscles et choux à la crème, avec des rôles Solitaires et des Duos.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Baguettes magiques, muscles et choux à la crème, avec des rôles Solitaires et des Duos.

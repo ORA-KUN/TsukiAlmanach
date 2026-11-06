@@ -3,7 +3,7 @@ title: Bien débuter
 icon: 🧭
 description: Comment trouver une règle, un rôle ou une version de mode sur l’Almanach.
 position: 0
-note: Premier guide
+revision: 1
 ---
 
 L’Almanach rassemble les règles de tous les modes joués sur Tsuki UHC. Chaque mode a son propre espace : une présentation, puis les règles, les rôles et les annexes quand ils sont écrits.

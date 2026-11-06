@@ -2,7 +2,7 @@
 title: Présentation
 description: "En équipes : onze espèces, la Triforce, les chants et quatre donjons autour du Temple du Temps."
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 En équipes : onze espèces, la Triforce, les chants et quatre donjons autour du Temple du Temps.

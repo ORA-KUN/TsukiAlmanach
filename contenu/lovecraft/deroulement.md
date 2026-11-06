@@ -4,6 +4,7 @@ icon: ⏳
 description: Épisodes, jour et nuit, horaires des événements et composition conseillée.
 parent: regles
 position: 0
+revision: 1
 ---
 
 Une partie dure environ 2 heures et se découpe en épisodes de 20 minutes : 10 minutes de jour puis 10 minutes de nuit. Tous les temps sont réglables par le host.

@@ -2,7 +2,7 @@
 title: Présentation
 description: Nudist Beach, l'Académie Honnōji et le Conseil s'affrontent.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Nudist Beach, l'Académie Honnōji et le Conseil s'affrontent. On gagne en gardant les deux Scissors Blades dans le lycée suspendu, ou en éliminant les autres camps.

@@ -4,6 +4,7 @@ icon: 🌀
 description: La barre de Folie, ses paliers, ce qui la fait monter et descendre.
 parent: regles
 position: 2
+revision: 1
 ---
 
 Chaque joueur a une barre de Folie de 0 à 100, affichée en permanence dans la barre d'action et le scoreboard. Elle part à 0 à l'annonce des rôles. La POU réduit toute Folie gagnée (−4 % par point).

@@ -2,7 +2,7 @@
 title: Présentation
 description: Des Humains deviennent Divinités grecques ou aztèques, recrutent leurs Apôtres et convertissent des Fidèles.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Des Humains deviennent Divinités grecques ou aztèques, recrutent leurs Apôtres et convertissent des Fidèles. Chaque panthéon a sa propre façon de gagner.

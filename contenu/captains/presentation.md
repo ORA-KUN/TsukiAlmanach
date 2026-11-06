@@ -2,7 +2,7 @@
 title: Présentation
 description: Les capitaines choisissent leurs joueurs à tour de rôle avant la partie.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Les capitaines choisissent leurs joueurs à tour de rôle avant la partie. En Progressive, ils recrutent pendant la partie.

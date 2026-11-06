@@ -2,7 +2,7 @@
 title: Présentation
 description: Équipes de 4 ou 5, et dans chaque équipe des taupes secrètes qui doivent trahir les leurs pour gagner ensemble.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Équipes de 4 ou 5, et dans chaque équipe des taupes secrètes qui doivent trahir les leurs pour gagner ensemble.

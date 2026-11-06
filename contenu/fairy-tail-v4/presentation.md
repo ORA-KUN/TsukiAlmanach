@@ -2,7 +2,7 @@
 title: Présentation
 description: Les mages de Fairy Tail et des guildes rivales s'affrontent, chacun avec sa magie du manga.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Les mages de Fairy Tail et des guildes rivales s'affrontent, chacun avec sa magie du manga.

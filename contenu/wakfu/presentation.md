@@ -2,7 +2,7 @@
 title: Présentation
 description: La Confrérie du Tofu contre les Shushus, Nox et Oropo en solo, la barre de Wakfu, les bénédictions des dieux et six Dofus à capturer.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 La Confrérie du Tofu contre les Shushus, Nox et Oropo en solo, la barre de Wakfu, les bénédictions des dieux et six Dofus à capturer.

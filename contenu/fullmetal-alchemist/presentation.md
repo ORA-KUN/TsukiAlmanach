@@ -2,7 +2,7 @@
 title: Présentation
 description: Alchimistes et Homonculus gagnent en camp, les Neutres jouent seuls.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Alchimistes et Homonculus gagnent en camp, les Neutres jouent seuls. Transmutations, pierres philosophales et Vérité au programme.

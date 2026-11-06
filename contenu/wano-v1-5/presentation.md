@@ -2,7 +2,7 @@
 title: Présentation
 description: Équipages de pirates, quatre Empereurs et leurs Fidèles, primes et coffres, sur les cartes de Wano Kuni et Onigashima.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Équipages de pirates, quatre Empereurs et leurs Fidèles, primes et coffres, sur les cartes de Wano Kuni et Onigashima.

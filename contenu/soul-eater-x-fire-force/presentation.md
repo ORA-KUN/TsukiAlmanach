@@ -2,7 +2,7 @@
 title: Présentation
 description: L'Académie et la Brigade N°8 contre les Sorcières et les Chevaliers, avec Asura et le Grand Prédicateur en solo.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 L'Académie et la Brigade N°8 contre les Sorcières et les Chevaliers, avec Asura et le Grand Prédicateur en solo. Gare à la Folie et à la Surchauffe.

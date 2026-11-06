@@ -2,7 +2,7 @@
 title: Présentation
 description: 56 mages du manga, chacun avec son grimoire et ses sorts, et le Spellbook pour apprendre de nouveaux sorts en cours de partie.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 56 mages du manga, chacun avec son grimoire et ses sorts, et le Spellbook pour apprendre de nouveaux sorts en cours de partie.

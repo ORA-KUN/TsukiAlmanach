@@ -2,7 +2,7 @@
 title: Présentation
 description: Bontariens, Brâkmariens, Bandits de Cania, Enfants de Sram et solos se lancent dans la course aux six Dofus.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Bontariens, Brâkmariens, Bandits de Cania, Enfants de Sram et solos se lancent dans la course aux six Dofus.

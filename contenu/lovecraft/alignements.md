@@ -4,6 +4,7 @@ icon: ☄️
 description: Toutes les 20 minutes, un Alignement change les règles pendant 5 minutes.
 parent: regles
 position: 5
+revision: 1
 ---
 
 À partir de 50:00, puis toutes les 20 minutes, un Alignement dure 5 minutes. Il est tiré parmi les Grands Anciens en jeu, sans répétition tant que tous ne sont pas passés.

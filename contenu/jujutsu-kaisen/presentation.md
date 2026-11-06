@@ -2,7 +2,7 @@
 title: Présentation
 description: Exorcistes, Fléaux, clan Zenin et Solitaires, avec l'énergie occulte et les extensions de territoire.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Exorcistes, Fléaux, clan Zenin et Solitaires, avec l'énergie occulte et les extensions de territoire.

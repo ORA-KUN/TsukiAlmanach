@@ -2,7 +2,7 @@
 title: Présentation
 description: Eldiens contre Mahrs, des rôles liés en duo, et l'Axe qui s'ouvre après 50 minutes.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Eldiens contre Mahrs, des rôles liés en duo, et l'Axe qui s'ouvre après 50 minutes. La V4 rejoue la fin de l'histoire.

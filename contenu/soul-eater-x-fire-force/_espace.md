@@ -11,6 +11,7 @@ command: /sf
 catalog_key: uhc-082
 mode_id: soul_eater_fire_force
 position: 310
+updated_at: 2026-11-05T23:47:09.72116+00:00
 ---
 
 Fiche de l’espace. Le texte sous l’en-tête n’est pas publié.

@@ -3,6 +3,7 @@ title: Commandes
 icon: ⌨️
 description: Les commandes /l et le menu du host.
 position: 3
+revision: 1
 ---
 
 Tout passe par `/l` (alias `/lovecraft`). Les compétences actives sont des objets à clic droit, sauf celles qui visent un joueur par son pseudo.

@@ -2,7 +2,7 @@
 title: Présentation
 description: Le gaz se compte, le matériel tombe en largages et les pouvoirs de Titan peuvent changer de main.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Le gaz se compte, le matériel tombe en largages et les pouvoirs de Titan peuvent changer de main. La V3 pousse plus loin l'équipement tridimensionnel.

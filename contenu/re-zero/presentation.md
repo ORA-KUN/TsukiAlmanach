@@ -2,7 +2,7 @@
 title: Présentation
 description: Les Sorcières contre les Chevaliers, et quelques solos qui jouent pour eux.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 Les Sorcières contre les Chevaliers, et quelques solos qui jouent pour eux.

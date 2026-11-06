@@ -2,7 +2,7 @@
 title: Présentation
 description: 49 rôles et 8 guildes, avec des rangs de mage, des quêtes, les Rois d'Ishgar et le Conseil des Maîtres.
 position: 0
-note: Première fiche du mode
+revision: 1
 ---
 
 49 rôles et 8 guildes, avec des rangs de mage, des quêtes, les Rois d'Ishgar et le Conseil des Maîtres.
