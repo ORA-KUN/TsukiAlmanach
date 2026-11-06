@@ -4,6 +4,7 @@ icon: 🧭
 description: Comment trouver une règle, un rôle ou une version de mode sur l’Almanach.
 position: 0
 revision: 1
+note: Jour ou nuit : l’Almanach suit maintenant le thème de ton appareil
 ---
 
 L’Almanach rassemble les règles de tous les modes joués sur Tsuki UHC. Chaque mode a son propre espace : une présentation, puis les règles, les rôles et les annexes quand ils sont écrits.
@@ -30,7 +31,7 @@ La page **Nouveautés** liste les dernières modifications de toutes les règles
 
 ## Jour ou nuit
 
-Le bouton soleil, en haut à droite, passe l’Almanach en thème clair, pratique en plein jour ou pour imprimer une page. Le bouton lune ramène la nuit.
+L’Almanach suit le thème de ton appareil. Le bouton lune, en haut à droite, le passe en thème nuit, plus reposant le soir ; le bouton soleil ramène le jour, pratique pour imprimer une page. Ton choix est retenu.
 
 ## Une erreur dans une règle ?
 
