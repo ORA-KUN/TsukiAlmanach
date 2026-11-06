@@ -4,11 +4,11 @@ icon: 📜
 kind: page
 description: "Les règles du Fairy Tail UHC V5 sur une page : but du jeu, calendrier, magie, rangs et quêtes, quartiers généraux, événements, morts et victoire."
 position: 1
-revision: 0
-note: Nouvelle page Règles, qui résume tout le mode
+revision: 1
+note: Phrase d'introduction raccourcie
 ---
 
-Toutes les règles du Fairy Tail UHC V5 sur une page. Chaque partie renvoie à sa page détaillée, rangée juste en dessous dans le menu.
+Chaque partie de cette page renvoie à sa page détaillée, rangée juste en dessous dans le menu.
 
 :::info En 30 secondes
 - À **20 min**, chaque joueur devient un mage de Fairy Tail : un rôle, un camp, une réserve de magie et des pouvoirs.
