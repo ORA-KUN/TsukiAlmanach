@@ -1,6 +1,7 @@
-import { ArrowRight, BookOpen, EyeOff, Lock, Search, Sparkles } from 'lucide-react';
+import { ArrowRight, BookOpen, EyeOff, Lock, Search } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
-import { SpaceIcon } from '../components/Icon.tsx';
+import { Logo, SpaceIcon } from '../components/Icon.tsx';
+import { SiteSidebar, type SiteSection } from '../components/Sidebar.tsx';
 import { StatusPill } from '../components/ModeHeader.tsx';
 import { ago, plural } from '../lib/format.ts';
 import { keys, useData, useOverview, useSession, useSpaces, useStatus } from '../lib/store.ts';
@@ -10,32 +11,9 @@ import { LoadError, setTitle } from './SpaceView.tsx';
 
 const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
-// Les huit phases, de la nouvelle lune à la dernière : le calendrier lunaire d'un almanach.
-function Phases() {
-  const r = 11;
-  return (
-    <div className="phases" aria-hidden="true">
-      {Array.from({ length: 8 }, (_, i) => {
-        // Croissante : l'ombre part vers la gauche ; décroissante : elle revient par la droite.
-        const cx = i <= 4 ? 14 - 2 * r * (i / 4) : 14 + 2 * r * (1 - (i - 4) / 4);
-        return (
-          <svg key={i} viewBox="0 0 28 28" width="28" height="28" style={{ animationDelay: `${i * 90}ms` }}>
-            <clipPath id={`ph-${i}`}>
-              <circle cx="14" cy="14" r={r} />
-            </clipPath>
-            <circle cx="14" cy="14" r={r} fill="var(--moon-1)" />
-            {i !== 4 && <circle cx={cx} cy="14" r={r + 0.4} fill="var(--moon-shadow)" clipPath={`url(#ph-${i})`} />}
-            <circle cx="14" cy="14" r={r} fill="none" stroke="var(--line-strong)" strokeWidth="0.8" />
-          </svg>
-        );
-      })}
-    </div>
-  );
-}
-
 type Card = { space: Space; versions: Space[]; overview?: Overview; status?: string };
 
-export function Home({ onSearch }: { onSearch: () => void }) {
+export function Home({ onSearch, menuOpen, setMenuOpen }: { onSearch: () => void; menuOpen: boolean; setMenuOpen: (o: boolean) => void }) {
   const { api, member } = useSession();
   const spaces = useSpaces();
   const overview = useOverview();
@@ -76,43 +54,65 @@ export function Home({ onSearch }: { onSearch: () => void }) {
   const totalRoles = (overview.data ?? []).reduce((n, o) => n + o.roles, 0);
   const totalPages = (overview.data ?? []).reduce((n, o) => n + o.pages, 0);
   const counts = (st: string) => modes.filter((c) => c.status === st).length;
+  const az = (list: Card[]) => list.map((c) => c.space).sort((x, y) => x.title.localeCompare(y.title, 'fr'));
+  const sections: SiteSection[] = [
+    { title: 'Pour commencer', spaces: az(guides) },
+    { title: 'Modes', spaces: az(modes.filter((c) => !c.status || c.status === 'fait')) },
+    { title: 'En préparation', spaces: az(modes.filter((c) => c.status === 'en_cours' || c.status === 'pas_fait')) },
+  ];
 
   return (
-    <main className="home" id="contenu">
-      <section className="hero">
-        <div className="hero__text">
-          <p className="hero__eyebrow">
-            <Sparkles size={14} /> Tsuki UHC
-          </p>
-          <h1 className="hero__title">
-            L’<em>Almanach</em>
-          </h1>
-          <p className="hero__lead">Toutes les règles des modes UHC de Tsuki, du lancement de la partie jusqu’au dernier rôle.</p>
-          <button className="hero__search" onClick={onSearch}>
-            <Search size={18} />
-            <span>Un mode, une règle, un rôle…</span>
-            <kbd>/</kbd>
-          </button>
-          {spaces.data && (
-            <p className="hero__stats">
+    <div className="layout layout--wide">
+      <SiteSidebar sections={sections} open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <main className="main home" id="contenu">
+      <header className="home__head">
+        <h1 className="article__title home__title">
+          <Logo size={40} /> Almanach
+        </h1>
+        <p className="article__lead">Toutes les règles des modes UHC de Tsuki, du lancement de la partie jusqu’au dernier rôle.</p>
+        <button className="home__search" onClick={onSearch}>
+          <Search size={18} />
+          <span>Chercher un mode, une règle, un rôle…</span>
+          <kbd>/</kbd>
+        </button>
+        {spaces.data && (
+          <p className="home__stats">
+            <span>
+              <strong>{modes.length}</strong> modes
+            </span>
+            {totalRoles > 0 && (
               <span>
-                <strong>{modes.length}</strong> modes
+                <strong>{totalRoles}</strong> rôles
               </span>
-              {totalRoles > 0 && (
-                <span>
-                  <strong>{totalRoles}</strong> rôles
+            )}
+            {totalPages > 0 && (
+              <span>
+                <strong>{totalPages}</strong> pages
+              </span>
+            )}
+          </p>
+        )}
+      </header>
+
+      {guides.length > 0 && (
+        <section className="shelf" aria-labelledby="guides-title">
+          <div className="shelf__head">
+            <h2 id="guides-title">Pour commencer</h2>
+          </div>
+          <div className="guides">
+            {guides.map((c) => (
+              <a key={c.space.id} className="guide" href={href(`/${c.space.slug}`)} style={{ ['--space' as string]: c.space.color }}>
+                <SpaceIcon icon={c.space.icon} title={c.space.title} color={c.space.color} size={36} />
+                <span className="guide__text">
+                  <span className="guide__title">{c.space.title}</span>
+                  {c.space.tagline && <span className="guide__desc">{c.space.tagline}</span>}
                 </span>
-              )}
-              {totalPages > 0 && (
-                <span>
-                  <strong>{totalPages}</strong> pages
-                </span>
-              )}
-            </p>
-          )}
-        </div>
-        <Phases />
-      </section>
+                <ArrowRight size={16} className="guide__go" />
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="shelf" aria-labelledby="modes-title">
         <div className="shelf__head">
@@ -155,26 +155,6 @@ export function Home({ onSearch }: { onSearch: () => void }) {
         )}
       </section>
 
-      {guides.length > 0 && (
-        <section className="shelf" aria-labelledby="guides-title">
-          <div className="shelf__head">
-            <h2 id="guides-title">Guides</h2>
-          </div>
-          <div className="guides">
-            {guides.map((c) => (
-              <a key={c.space.id} className="guide" href={href(`/${c.space.slug}`)} style={{ ['--space' as string]: c.space.color }}>
-                <SpaceIcon icon={c.space.icon} title={c.space.title} color={c.space.color} size={36} />
-                <span>
-                  <span className="guide__title">{c.space.title}</span>
-                  {c.space.tagline && <span className="guide__desc">{c.space.tagline}</span>}
-                </span>
-                <ArrowRight size={16} className="guide__go" />
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
-
       {changes.data && changes.data.length > 0 && (
         <section className="shelf" aria-labelledby="news-title">
           <div className="shelf__head">
@@ -189,7 +169,8 @@ export function Home({ onSearch }: { onSearch: () => void }) {
       <footer className="sitefoot">
         <BookOpen size={14} /> L’Almanach de Tsuki · écrit par l’équipe et par Claude
       </footer>
-    </main>
+      </main>
+    </div>
   );
 }
 
@@ -197,16 +178,17 @@ function ModeCard({ c }: { c: Card }) {
   const s = c.space;
   return (
     <a className="mode" href={href(`/${s.slug}`)} style={{ ['--space' as string]: s.color }}>
-      <span className="mode__band">{s.cover_url && <img src={s.cover_url} alt="" loading="lazy" />}</span>
-      <SpaceIcon icon={s.icon} title={s.title} color={s.color} size={56} className="mode__icon" />
-      <span className="mode__body">
-        <span className="mode__title">{s.title}</span>
-        <span className="mode__sub">
-          {[s.version_label, s.universe].filter(Boolean).join(' · ')}
-          {c.versions.length > 1 && <span className="mode__versions">{c.versions.length} versions</span>}
+      <span className="mode__top">
+        <SpaceIcon icon={s.icon} title={s.title} color={s.color} size={40} className="mode__icon" />
+        <span className="mode__names">
+          <span className="mode__title">{s.title}</span>
+          <span className="mode__sub">
+            {[s.version_label, s.universe].filter(Boolean).join(' · ')}
+            {c.versions.length > 1 && <span className="mode__versions">{c.versions.length} versions</span>}
+          </span>
         </span>
-        {s.tagline && <span className="mode__tagline">{s.tagline}</span>}
       </span>
+      {s.tagline && <span className="mode__tagline">{s.tagline}</span>}
       <span className="mode__foot">
         <StatusPill status={c.status} />
         {!s.published && (

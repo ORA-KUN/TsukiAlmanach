@@ -1,9 +1,9 @@
-import { ChevronDown, ChevronRight, ExternalLink, EyeOff, Lock, Plus, Settings2, Users } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, ExternalLink, EyeOff, Lock, Plus, Settings2, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { TreeNode } from '../lib/tree.ts';
 import type { Space } from '../lib/types.ts';
 import { href, navigate } from '../router.ts';
-import { SpaceIcon } from './Icon.tsx';
+import { Logo, SpaceIcon } from './Icon.tsx';
 
 function contains(n: TreeNode, id: string | null): boolean {
   return !!id && (n.id === id || n.children.some((c) => contains(c, id)));
@@ -78,6 +78,9 @@ export function Sidebar({
     <>
       <div className={`scrim ${open ? 'is-open' : ''}`} onClick={onClose} />
       <aside className={`sidebar ${open ? 'is-open' : ''}`} style={{ ['--space' as string]: space.color }}>
+        <a className="sidebar__back" href={href('/')}>
+          <ChevronLeft size={14} /> Tous les modes
+        </a>
         <div className="sidebar__space">
           <a href={href(`/${space.slug}`)} className="sidebar__spacelink">
             <SpaceIcon icon={space.icon} title={space.title} color={space.color} size={36} />
@@ -125,6 +128,63 @@ export function Sidebar({
             </a>
           </div>
         )}
+      </aside>
+    </>
+  );
+}
+
+export type SiteSection = { title: string; spaces: Space[] };
+
+function Section({ section, onPick }: { section: SiteSection; onPick: () => void }) {
+  const [open, setOpen] = useState(true);
+  return (
+    <li className="tree__group">
+      <button className="tree__gtitle" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+        {open ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+        <span>{section.title}</span>
+      </button>
+      {open && (
+        <ul onClick={(e) => (e.target as Element).closest('a') && onPick()}>
+          {section.spaces.map((s) => (
+            <li key={s.id}>
+              <a className="tree__link" href={href(`/${s.slug}`)}>
+                <SpaceIcon icon={s.icon} title={s.title} color={s.color} size={18} />
+                <span>{s.title}</span>
+                {s.visibility === 'equipe' && <Lock size={12} className="tree__flag" aria-label="Réservé à l’équipe" />}
+                {!s.published && <EyeOff size={12} className="tree__flag" aria-label="Non publié" />}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+}
+
+// Le menu de l'accueil : tous les espaces, rangés par rubrique, comme le sommaire d'un livre.
+export function SiteSidebar({ sections, open, onClose }: { sections: SiteSection[]; open: boolean; onClose: () => void }) {
+  return (
+    <>
+      <div className={`scrim ${open ? 'is-open' : ''}`} onClick={onClose} />
+      <aside className={`sidebar ${open ? 'is-open' : ''}`}>
+        <div className="sidebar__space">
+          <a href={href('/')} className="sidebar__spacelink">
+            <Logo size={32} />
+            <span>
+              <span className="sidebar__title">Almanach</span>
+              <span className="sidebar__kind">Les règles des modes UHC de Tsuki</span>
+            </span>
+          </a>
+        </div>
+        <nav className="tree" aria-label="Tous les modes">
+          <ul>
+            {sections
+              .filter((x) => x.spaces.length)
+              .map((x) => (
+                <Section key={x.title} section={x} onPick={onClose} />
+              ))}
+          </ul>
+        </nav>
       </aside>
     </>
   );

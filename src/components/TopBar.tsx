@@ -5,16 +5,22 @@ import { useSession } from '../lib/store.ts';
 import { Head, Logo } from './Icon.tsx';
 
 export function useTheme(): [string, () => void] {
-  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme ?? 'nuit');
+  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme ?? 'jour');
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    try {
-      localStorage.setItem('almanach-theme', theme);
-    } catch {
-      /* rien */
-    }
   }, [theme]);
-  return [theme, () => setTheme((t) => (t === 'nuit' ? 'jour' : 'nuit'))];
+  // Le choix n'est retenu que si le lecteur clique : sinon, le site suit l'appareil.
+  const toggle = () =>
+    setTheme((t) => {
+      const next = t === 'nuit' ? 'jour' : 'nuit';
+      try {
+        localStorage.setItem('almanach-theme', next);
+      } catch {
+        /* rien */
+      }
+      return next;
+    });
+  return [theme, toggle];
 }
 
 export function TopBar({ onSearch, onMenu, showMenu }: { onSearch: () => void; onMenu: () => void; showMenu: boolean }) {

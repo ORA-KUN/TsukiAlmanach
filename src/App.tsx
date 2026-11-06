@@ -48,7 +48,7 @@ function Shell() {
   let view: React.ReactNode;
   switch (route.name) {
     case 'home':
-      view = <Home onSearch={() => setSearchOpen(true)} />;
+      view = <Home onSearch={() => setSearchOpen(true)} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;
       break;
     case 'changelog':
       view = <Changelog />;
@@ -80,7 +80,7 @@ function Shell() {
       <a className="skip" href="#contenu">
         Aller au contenu
       </a>
-      {route.name !== 'edit' && <TopBar onSearch={() => setSearchOpen(true)} onMenu={() => setMenuOpen((o) => !o)} showMenu={!!spaceSlug} />}
+      {route.name !== 'edit' && <TopBar onSearch={() => setSearchOpen(true)} onMenu={() => setMenuOpen((o) => !o)} showMenu={!!spaceSlug || route.name === 'home'} />}
       {inTeam ? <Suspense fallback={<div className="main main--center"><span className="spinner" /></div>}>{view}</Suspense> : view}
       <SearchPalette open={searchOpen} onClose={() => setSearchOpen(false)} space={space} />
     </div>

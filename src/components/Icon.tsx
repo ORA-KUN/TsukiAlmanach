@@ -21,8 +21,8 @@ export function Logo({ size = 28 }: { size?: number }) {
     <svg className="logo" width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
       <defs>
         <linearGradient id="logo-g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#8cc4ff" />
-          <stop offset="1" stopColor="#b49cff" />
+          <stop offset="0" stopColor="var(--logo-1)" />
+          <stop offset="1" stopColor="var(--logo-2)" />
         </linearGradient>
         <mask id="logo-m">
           <rect width="32" height="32" fill="#fff" />

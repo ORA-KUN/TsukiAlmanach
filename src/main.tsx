@@ -1,6 +1,4 @@
-import '@fontsource-variable/geist/wght.css';
-import '@fontsource-variable/fraunces/opsz.css';
-import '@fontsource-variable/fraunces/opsz-italic.css';
+import '@fontsource-variable/inter/wght.css';
 import '@fontsource/geist-mono/400.css';
 import './styles.css';
 import { createRoot } from 'react-dom/client';
@@ -9,13 +7,8 @@ import { getApi } from './lib/api.ts';
 import { load } from './lib/store.ts';
 import { matchRoute } from './router.ts';
 
-// Thème choisi (nuit par défaut, comme Tsuki).
-try {
-  const t = localStorage.getItem('almanach-theme');
-  if (t === 'jour' || t === 'nuit') document.documentElement.dataset.theme = t;
-} catch {
-  /* rien */
-}
+// Le thème est posé avant tout affichage par le petit script d'index.html (jour par défaut,
+// nuit si l'appareil est en mode sombre ou si le lecteur l'a choisi).
 
 const api = await getApi();
 const member = await api.me().catch(() => null);

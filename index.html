@@ -1,11 +1,19 @@
 <!doctype html>
-<html lang="fr" data-theme="nuit">
+<html lang="fr" data-theme="jour">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Almanach · Les règles des modes UHC de Tsuki</title>
     <meta name="description" content="Le livre des règles des modes UHC de Tsuki : modes, rôles, camps et nouveautés." />
-    <meta name="theme-color" content="#060914" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1014" media="(prefers-color-scheme: dark)" />
+    <script>
+      try {
+        var t = localStorage.getItem('almanach-theme');
+        if (t !== 'jour' && t !== 'nuit') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'nuit' : 'jour';
+        document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <!--almanach:head-->
   </head>

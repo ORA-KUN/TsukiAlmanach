@@ -290,7 +290,7 @@ export class MemoryApi implements Api {
       const text = norm(p.title + ' ' + p.content);
       if (words.every((w) => text.includes(w))) {
         const i = norm(p.content).indexOf(words[0]);
-        const snippet = i >= 0 ? p.content.slice(Math.max(0, i - 50), i + 90).replace(/[#*:`|]+/g, ' ').replace(new RegExp(words[0], 'i'), (m) => `«${m}»`) : p.description;
+        const snippet = i >= 0 ? p.content.slice(Math.max(0, i - 50), i + 90).replace(/:::?[a-z]+/g, ' ').replace(/\{[^}\n]*\}/g, ' ').replace(/[#*:`|]+/g, ' ').replace(new RegExp(words[0], 'i'), (m) => `«${m}»`) : p.description;
         hits.push({ ...base, kind: 'page', title: p.title, icon: p.icon, anchor: null, camp: null, snippet, score: norm(p.title).includes(words[0]) ? 1.5 : 1 });
       }
     }

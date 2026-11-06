@@ -35,7 +35,8 @@ function page(meta: Meta, body: string): string {
   return template
     .replace(/<title>[^<]*<\/title>/, `<title>${esc(meta.title === 'Almanach' ? 'Almanach · Les règles des modes UHC de Tsuki' : meta.title + ' · Almanach')}</title>`)
     .replace(/<meta name="description" content="[^"]*"\s*\/?>/, `<meta name="description" content="${esc(meta.description)}" />`)
-    .replace(/<meta name="theme-color" content="[^"]*"\s*\/?>/, `<meta name="theme-color" content="${esc(meta.color ?? '#060914')}" />`)
+    // Discord colore l'aperçu avec theme-color : une seule balise, à la couleur du mode.
+    .replace(/<meta name="theme-color"[^>]*>(\s*<meta name="theme-color"[^>]*>)*/, `<meta name="theme-color" content="${esc(meta.color ?? '#6a4fd6')}" />`)
     .replace('<!--almanach:head-->', head)
     .replace('<!--almanach:body-->', `<div class="static">${body}</div>`);
 }
