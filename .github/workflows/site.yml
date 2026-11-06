@@ -40,6 +40,7 @@ jobs:
       - name: Adresse du site
         run: |
           site="${{ steps.pages.outputs.base_url }}"
+          site="${site/#http:/https:}"   # toujours en https, même si « Enforce HTTPS » est décoché
           base="${{ steps.pages.outputs.base_path }}"
           echo "ALMANACH_SITE=${site%/}" >> "$GITHUB_ENV"
           echo "ALMANACH_BASE=${base%/}/" >> "$GITHUB_ENV"
