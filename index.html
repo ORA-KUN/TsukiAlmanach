@@ -13,11 +13,73 @@
         if (t !== 'jour' && t !== 'nuit') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'nuit' : 'jour';
         document.documentElement.dataset.theme = t;
       } catch (e) {}
+      // Pendant le chargement : l'animation à la place du texte brut (gardé pour Discord et les moteurs).
+      document.documentElement.classList.add('chargement');
+      setTimeout(function () {
+        document.documentElement.classList.remove('chargement');
+      }, 12000);
     </script>
+    <style>
+      #chargement {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        place-items: center;
+        background: #fff;
+        color: #15171c;
+        --l1: #5b8def;
+        --l2: #7a5ce6;
+      }
+      [data-theme='nuit'] #chargement {
+        background: #0f1014;
+        color: #eceef2;
+        --l1: #8cc4ff;
+        --l2: #b49cff;
+      }
+      html.chargement body { background: #fff; }
+      html.chargement[data-theme='nuit'] body { background: #0f1014; }
+      html.chargement #chargement { display: grid; }
+      html.chargement #root .static { display: none; }
+      .ch { display: flex; flex-direction: column; align-items: center; gap: 14px; opacity: 0; animation: ch-in 0.25s ease 0.12s forwards; }
+      .ch svg { width: 64px; height: 64px; overflow: visible; }
+      .ch-s1 { stop-color: var(--l1); }
+      .ch-s2 { stop-color: var(--l2); }
+      .ch-ombre { animation: ch-phase 1.5s ease-in-out infinite alternate; }
+      .ch-vague { stroke-dasharray: 24; animation: ch-vague 1.5s ease-in-out infinite; }
+      .ch-nom { font: 600 15px/1 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; letter-spacing: 0.02em; opacity: 0.7; }
+      @keyframes ch-in { to { opacity: 1; } }
+      /* L'ombre glisse : pleine lune, puis croissant (les phases d'un almanach). */
+      @keyframes ch-phase { from { transform: translate(13px, -5px); } to { transform: none; } }
+      @keyframes ch-vague { 0% { stroke-dashoffset: 24; } 50% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -24; } }
+      @media (prefers-reduced-motion: reduce) {
+        .ch-ombre, .ch-vague { animation: none; }
+        .ch-vague { stroke-dasharray: none; }
+      }
+    </style>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <!--almanach:head-->
   </head>
   <body>
+    <div id="chargement" aria-hidden="true">
+      <div class="ch">
+        <svg viewBox="0 0 32 32">
+          <defs>
+            <linearGradient id="ch-g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" class="ch-s1" />
+              <stop offset="1" class="ch-s2" />
+            </linearGradient>
+            <mask id="ch-m">
+              <rect width="32" height="32" fill="#fff" />
+              <circle class="ch-ombre" cx="20.5" cy="10.5" r="8.2" fill="#000" />
+            </mask>
+          </defs>
+          <circle cx="15" cy="13" r="10" fill="url(#ch-g)" mask="url(#ch-m)" />
+          <path class="ch-vague" d="M5 25.5c3.6-1.6 7.3-1.6 11 0 3.7-1.6 7.4-1.6 11 0" fill="none" stroke="url(#ch-g)" stroke-width="2.2" stroke-linecap="round" />
+        </svg>
+        <span class="ch-nom">Almanach</span>
+      </div>
+    </div>
     <div id="root" data-static><!--almanach:body--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

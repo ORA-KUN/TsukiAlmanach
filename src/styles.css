@@ -863,8 +863,8 @@ kbd {
   color: var(--muted);
 }
 .modehead__facts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1px;
   margin: 24px 0 0;
   border-radius: var(--radius);
@@ -873,6 +873,7 @@ kbd {
   background: var(--line);
 }
 .modehead__facts div {
+  flex: 1 1 150px;
   padding: 12px 14px;
   background: var(--surface);
 }

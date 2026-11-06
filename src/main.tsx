@@ -30,11 +30,26 @@ const preload = (async () => {
 );
 const result = await Promise.race([preload, new Promise((r) => setTimeout(() => r('lent'), 4000))]);
 
+// Fin du chargement : l'animation s'efface en fondu, puis disparaît.
+function finChargement() {
+  const html = document.documentElement;
+  const el = document.getElementById('chargement');
+  const fin = () => {
+    html.classList.remove('chargement');
+    el?.remove();
+  };
+  if (!el || !html.classList.contains('chargement') || !el.animate) return fin();
+  el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, easing: 'ease-out', fill: 'forwards' }).finished.then(fin, fin);
+}
+
 const root = document.getElementById('root')!;
 // Base injoignable : on garde la page pré-rendue (lisible) plutôt qu'un écran d'erreur.
 if (result === 'erreur' && root.querySelector('.static') && !location.pathname.includes('/equipe')) {
   console.warn('Almanach : base injoignable, affichage de la version enregistrée de la page.');
+  finChargement();
 } else {
   root.removeAttribute('data-static');
   createRoot(root).render(<App api={api} initialMember={member} />);
+  // Deux images plus tard, l'application est affichée : on retire l'animation par-dessus.
+  requestAnimationFrame(() => requestAnimationFrame(finChargement));
 }
