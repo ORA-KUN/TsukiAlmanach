@@ -1,41 +1,44 @@
 ---
-title: Déroulement d’une partie
+title: Timers et règles
 icon: ⏳
-description: Calendrier, camps, composition automatique et victoire.
+description: Les timers d'une partie de Sonic UHC (rôles, jour et nuit, évents, bordure) et ce qui se passe au lancement.
 parent: regles
-position: 0
-revision: 1
+position: 2
+revision: 2
 ---
 
-Une partie dure environ **2 heures**. Un épisode = **10 minutes de jour** puis **10 minutes de nuit**. Chaque événement est annoncé avec ses coordonnées pour que tout le monde puisse y converger. Tous les horaires se règlent dans le menu du host.
+## Timers
 
-| Temps | Événement |
-| --- | --- |
-| 0:00 | Lancement : le Temple de Gaïa est déjà au centre, le Coffre de Gaïa est enterré |
-| 10:00 | Premières capsules de Wisps, puis toutes les **8 minutes** |
-| 20:00 | Annonce des rôles et PvP. Émeraude Verte sur l'autel du Temple, Émeraude Jaune confiée en secret à un joueur |
-| 25:00 | Première faille du Cyber Space (Émeraude Cyan) |
-| 40:00 | Deuxième faille du Cyber Space (Émeraude Blanche) |
-| 55:00 | Le Titan (Émeraude Rouge) |
-| 60:00 | Le Coffre de Gaïa est révélé à tous s'il n'a pas été ouvert (Émeraude Bleue) |
-| 75:00 | La Comète Noire (Émeraude Violette) |
-| 90:00 | La bordure rétrécit |
+- Rôles et PvP à **20 min**.
+- Jour et nuit de **10 min** chacun : un épisode dure **20 min**.
+- [Capsules à Wisps](./wisps) dès **10 min**, puis toutes les **8 min**.
+- [Cyber Space](./lieux) à **25 min** et **40 min**.
+- [Titan](./lieux) à **55 min**.
+- [Coffre de Gaïa](./lieux) révélé à **60 min** s'il n'a pas été ouvert.
+- [Comète Noire](./lieux) à **75 min**.
+- Bordure à **90 min**.
 
-## Les camps
+:::info
+Ces timers se règlent dans le menu de l'host (`/sonic menu`). Chaque évent est annoncé dans le tchat avec ses coordonnées.
+:::
 
-| Camp | Part des joueurs | Ce qu'il sait |
-| --- | --- | --- |
-| Héros | le reste | Ils ne se connaissent pas entre eux |
-| Empire Eggman | **25 %** | Ses membres se connaissent dès l'annonce des rôles |
-| Ténèbres | **15 %** (au moins 1 dès 6 joueurs) | Ses membres se connaissent et gagnent **+10 % de Force** la nuit |
-| Solitaires | **1** de 8 à 14 joueurs, **2** de 15 à 24, **3** au-delà | Chacun joue seul, avec **2 cœurs** de plus au maximum |
+## Au lancement
 
-L'Empire et les Ténèbres se connaissent aussi entre eux. Personne ne change de camp, sauf un joueur robotisé par Eggman, qui rejoint l'Empire. Le host peut retirer des rôles et fixer le nombre de joueurs par camp ; tout est automatique par défaut.
+- Le **Temple de Gaïa** est déjà construit au centre (0, 0).
+- Le **Coffre de Gaïa** est enterré entre **150** et **400 blocs** du centre.
 
-## Victoire
+## À l'annonce des rôles
 
-Le dernier camp en vie gagne. Chaque Solitaire gagne seul. La Bénédiction du Chaos est un gros avantage, pas une victoire.
+- Chaque joueur reçoit son rôle et l'objet de son pouvoir.
+- L'**Émeraude Verte** apparaît sur l'autel du Temple.
+- L'**Émeraude Jaune** est confiée en secret à un joueur.
+
+## Règles
+
+:::attention
+Les règles de stuff (enchantements, diamants, lave…) dépendent de l'host.
+:::
 
 :::info Option : Gaïa Noire
-Désactivée par défaut. Si le host l'active, à partir de la **3e nuit**, des Cauchemars de Gaïa surgissent près des joueurs (zombies rapides en armure violette, **2 anneaux** chacun).
+Désactivée par défaut. Activée, des **Cauchemars de Gaïa** surgissent près des joueurs la nuit, dès la **3e nuit** (réglable) : des zombies rapides en armure violette, **2 anneaux** chacun.
 :::
