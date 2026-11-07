@@ -5,6 +5,7 @@ description: "Les 8 mages de Blue Pegasus : Ichiya, Bob, Hibiki, Ren, Eve, Nichi
 parent: roles
 position: 2
 revision: 1
+note: Ren : Aerial Shot ; Eve : Blizzard
 ---
 
 **8 rôles**. Parfums, `/amour` et messages d'Hibiki servent surtout à retrouver ses alliés. Bob, le maître, siège au Conseil des Maîtres (Ichiya le remplace s'il n'est pas là).
@@ -38,17 +39,19 @@ Petites ailes · Traversée · `/ft cocktail`.
 :::
 
 :::role Ren {camp="Blue Pegasus" tete="https://mc-heads.net/head/7b0bbda53b8162a3e55ab6c05e68f5a4773640b3ef9c4e8ea2ca1db659d2e342/128"}
-Parfum de force · `/amour`.
+Parfum de force · `/amour` · Aerial Shot.
 
 - **Magie** : **60** points
 - Un parfum de force à chaque épisode. `/amour <joueur>` (**1 fois**).
+- **Aerial Shot** : **3** rafales d'air sur le joueur visé, **1❤** et un recul chacune (**15 magie**, **5 min**).
 :::
 
 :::role Eve {camp="Blue Pegasus" tete="https://mc-heads.net/head/d574413f2b5e4d0cd12520574643c00853795a0fe397c465df88311c6a6f024b/128"}
-Parfum de vitesse · `/amour`.
+Parfum de vitesse · `/amour` · Blizzard.
 
 - **Magie** : **60** points
 - Un parfum de vitesse (**2 min**) à chaque épisode. `/amour <joueur>` : savoir s'il est de Blue Pegasus (**1 fois**).
+- **Blizzard** : Lenteur II et Cécité **3 s** aux ennemis à **8 blocs** (**15 magie**, **6 min**).
 :::
 
 :::role Nichiya {camp="Blue Pegasus" tete="https://mc-heads.net/head/4d729bbeb82fca61d9a907b4eefefbb310a7a505e192d4accc549dd015eeef52/128"}

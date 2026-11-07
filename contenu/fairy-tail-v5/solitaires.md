@@ -5,6 +5,7 @@ description: Acnologia et Zeleph, qui gagnent seuls.
 parent: roles
 position: 8
 revision: 1
+note: Zeleph : Onde de mort, Livre de Zeleph et Corps immortel
 ---
 
 **2 rôles** qui gagnent seuls. Zeleph peut gagner avec Mavis (Fairy Destiny) et avec August (`/ft pere`). Natsu devenu E.N.D et Ignia après la Vraie fête du Roi Dragon gagnent seuls eux aussi.
@@ -19,10 +20,13 @@ revision: 1
 :::
 
 :::role Zeleph {camp="Solitaires" tete="https://mc-heads.net/head/5d3301e556a99e050b84b7b0308caa49f6a76e5f9183769ad014a9d81f9ac813/128"}
-`/ft guilds` · Malédiction d'Ankseram · `/ft voir`.
+`/ft guilds` · `/ft voir` · Onde de mort · Livre de Zeleph · Malédiction d'Ankseram · Corps immortel.
 
 - **Magie** : aucune, tes pouvoirs n'ont que des recharges
 - Vitesse I et Force I. Victoire seul. Tu connais Mavis. `/ft guilds`.
-- **Malédiction d'Ankseram** : après ton 1ᵉʳ kill, Lenteur I aux joueurs à **10 blocs**.
 - `/ft voir <pseudo>` : voir un rôle par épisode. Tuer Natsu : Résistance I.
+- **Onde de mort** : **2❤** et Wither I **5 s** aux joueurs à **10 blocs** (**10 min**).
+- **Livre de Zeleph** : un démon de tes livres se bat pour toi **60 s** (**15 min**).
+- **Malédiction d'Ankseram** : après ton 1ᵉʳ kill, Lenteur I aux joueurs à **10 blocs**.
+- **Corps immortel** (**1 fois**) : un coup mortel qui ne vient pas de Natsu te laisse à **3❤**, invisible **5 s**.
 :::

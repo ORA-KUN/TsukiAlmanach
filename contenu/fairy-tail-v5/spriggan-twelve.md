@@ -5,6 +5,7 @@ description: "Les 12 Spriggans de l'empereur d'Arbaless : August, Eileen, God Se
 parent: roles
 position: 6
 revision: 1
+note: Eileen : Enchantement
 ---
 
 **12 rôles**, la garde de l'empereur d'Arbaless. Pas de quartier général, ni rang ni quêtes. À partir de **45 min**, chaque Spriggan reçoit toutes les **10 min** le pseudo d'un autre Spriggan. Un Spriggan qui tue un Roi d'Ishgar gagne **5 %** de force.
@@ -83,11 +84,11 @@ Sceau Temporel · Griffure de l'espace-temps.
 :::
 
 :::role Eileen Belserion {camp="Spriggan Twelve" tete="https://mc-heads.net/head/ae68d5eb8d21526a0f2e19a5bb7d19df5ef63eae434643d86a42f8866e77edcb/128"}
-Universe One.
+Universe One · Enchantement.
 
 - **Magie** : **140** points
-- **Universe One** (**1 fois**, **100 magie**) : après **30 s** de préparation, une lumière éblouissante disperse au hasard tous les joueurs à **60 blocs** (Cécité **5 s**).
-- Les Spriggans ne sont pas touchés.
+- **Universe One** (**1 fois**, **100 magie**) : après **30 s** de préparation, une lumière éblouissante disperse au hasard tous les joueurs à **60 blocs** (Cécité **5 s**). Les Spriggans ne sont pas touchés.
+- **Enchantement** : un allié visé, ou toi, gagne +**10%** force et +**10%** résistance **1 min** (**30 magie**, **8 min**).
 :::
 
 :::role Jacob Lessio {camp="Spriggan Twelve" tete="https://mc-heads.net/head/1746fd98799b5e7698b8e93d2e9537e26a9ac4121078e84a9bd90c873ec7a185/128"}
