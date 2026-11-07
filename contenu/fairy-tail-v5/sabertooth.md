@@ -4,7 +4,7 @@ icon: 🐯
 description: "Les 8 mages de Sabertooth : Sting, Rogue, Minerva, Yukino, Orga, Rufus et les deux Exceed."
 parent: roles
 position: 1
-revision: 1
+revision: 2
 ---
 
 **8 rôles**. Sting et Rogue se connaissent et gagnent **5 %** de force à **10 blocs** l'un de l'autre ; ils partagent un sort combiné. Frosh et Lecteur, leurs Exceed, volent d'autant plus longtemps qu'ils sont restés près d'eux.
@@ -62,10 +62,12 @@ Vol.
 :::
 
 :::role Orga Nanagia {camp="Sabertooth" tete="https://mc-heads.net/head/3d4d5be2656efffb1b4d77b9cce5595f315e6349c5cd17277818b47e9acebae/128"}
-Canon à Particules du Dieu Foudroyant.
+Canon à Particules du Dieu Foudroyant · Halo foudroyant · insensible à la foudre.
 
 - **Magie** : **105** points
 - **Canon à Particules du Dieu Foudroyant** : rayon de foudre de **30 blocs**, **2,5❤** (**25 magie**, **5 min**).
+- **Halo foudroyant** : les ennemis à **6 blocs** sont foudroyés, **2❤** (**30 magie**, **8 min**).
+- Chasseur de Dieu de la Foudre : la foudre ne te touche pas.
 :::
 
 :::role Rufus Roy {camp="Sabertooth" tete="https://mc-heads.net/head/cc00958e497fe5e2f1d7442c55db889ea8810e81c237493decf6950d8114aafc/128"}

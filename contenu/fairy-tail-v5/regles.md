@@ -3,7 +3,7 @@ title: Règles
 icon: 📜
 description: "Les règles du Fairy Tail UHC V5 sur une page : but du jeu, calendrier, magie, rangs et quêtes, quartiers généraux, événements, morts et victoire."
 position: 1
-revision: 2
+revision: 3
 ---
 
 Chaque partie de cette page renvoie à sa page détaillée, rangée juste en dessous dans le menu.
@@ -11,7 +11,7 @@ Chaque partie de cette page renvoie à sa page détaillée, rangée juste en des
 :::info En 30 secondes
 - À **20 min**, chaque joueur devient un mage de Fairy Tail : un rôle, un camp, une réserve de magie et des pouvoirs.
 - Les pouvoirs coûtent de la **magie**, qui remonte de **1** point toutes les **30 s**.
-- Un **rang** de mage (C, B, A ou S) donne des quêtes ; **5** quêtes réussies et on monte d'un rang.
+- Un **rang** de mage (C, B, A ou S) donne **10** quêtes ; **5** quêtes réussies et on monte d'un rang.
 - Un camp gagne quand il est le seul encore en vie.
 :::
 
@@ -54,7 +54,7 @@ La force, la vitesse et la résistance se comptent en **%**, et chaque rôle a l
 | B | **35 %** | quêtes B et C |
 | C | **30 %** | quêtes C ; l'annonce des morts cache le pseudo et le rôle |
 
-Chacun reçoit **5** quêtes de son rang. Les quêtes A et S s'acceptent dans un quartier général. **5** quêtes réussies : on passe au rang suivant, avec **5** nouvelles quêtes. Elles rapportent des objets, de la magie, des effets (**10 %** au plus sur la partie) et des informations, détaillés dans [Rangs de mage et quêtes](./rangs-et-quetes).
+Chacun reçoit **10** quêtes de son rang. Les quêtes A et S s'acceptent dans un quartier général. **5** quêtes réussies, au choix : on passe au rang suivant, avec **10** nouvelles quêtes. Elles rapportent des objets, de la magie, des effets (**10 %** au plus sur la partie) et des informations, détaillés dans [Rangs de mage et quêtes](./rangs-et-quetes).
 
 Tartaros, les Spriggans et les Solitaires n'ont ni rang ni quêtes.
 

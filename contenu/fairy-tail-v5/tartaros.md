@@ -4,7 +4,7 @@ icon: 😈
 description: "Les 11 démons de Tartaros : Mald Gheel, Kyoka, Seila, Silver, Jackal et les autres."
 parent: roles
 position: 5
-revision: 1
+revision: 2
 ---
 
 **11 rôles**, les démons de Zeleph. Ils n'ont **pas de points de magie** (leurs pouvoirs n'ont que des recharges), sauf Silver, et ni rang ni quêtes. Leur quartier général est Cube, l'île volante. Mald Gheel détient le Livre d'E.N.D, que Natsu peut lui prendre.
@@ -21,18 +21,23 @@ Ronces · `/ft return` · Etherias · Voyance.
 :::
 
 :::role Ezer {camp="Tartaros" tete="https://mc-heads.net/head/81da5545f5f29daf3644e1ea95162385079789c8ced48a1edfa5e15bce6dc4ef/128"}
-Transformation Etherias · `/ft find`.
+Transformation Etherias · Six bras · Lames du démon · `/ft find`.
 
 - **Magie** : aucune, tes pouvoirs n'ont que des recharges
 - **Transformation Etherias** : Résistance I, puis Lenteur croissante après **3**, **7** puis **10 min**. Recharge **12 min**.
+- **Six bras** : en Etherias, **15 %** de chance qu'un coup d'épée frappe deux fois (+**50 %** de dégâts).
+- **Lames du démon** : tu fonces de **6 blocs**, **2❤** aux joueurs touchés, **3❤** en Etherias (**6 min**).
 - `/ft find <pseudo>` : savoir si c'est un membre de Tartaros (**15 min**).
 :::
 
 :::role Kyoka {camp="Tartaros" tete="https://mc-heads.net/head/c0a5053e78629c6a81bb8928331913f07b15fa9fb6fa5d85cd7f77509abbfcc9/128"}
-Résistance I · Néo-Minerva.
+Résistance I · Renforcement · Supplice · Néo-Minerva.
 
 - **Magie** : aucune, tes pouvoirs n'ont que des recharges
-- Résistance I permanente. Si tu tues Minerva, elle rejoint Tartaros. `/ftchat <message>` : parler à Mald Gheel.
+- Résistance I permanente. `/ftchat <message>` : parler à Mald Gheel.
+- **Renforcement** : +**10%** force et +**10%** vitesse **1 min 30** (**10 min**).
+- **Supplice** : le joueur visé subit **30 %** de dégâts en plus pendant **20 s** (**15 min**).
+- Si tu tues Minerva, elle rejoint Tartaros.
 :::
 
 :::role Tempester {camp="Tartaros" tete="https://mc-heads.net/head/1516e6bdab5b469d5c15086aa0a6c56f76ebcbaf0e387a0c9e243113eaaca221/128"}
@@ -55,18 +60,22 @@ Glaciation · Fureur du démon de glace.
 :::
 
 :::role Jackal {camp="Tartaros" tete="https://mc-heads.net/head/75c3f50068c75943b9371878776c535595a42e4fddf96a9b74b766562746d2d1/128"}
-Maléfice explosif · kills.
+Maléfice explosif · Bombe humaine · kills.
 
 - **Magie** : aucune, tes pouvoirs n'ont que des recharges
 - **Maléfice explosif** : explosion de **3❤** à **10 blocs** (**15 min**, Natsu immunisé).
+- **Bombe humaine** : le joueur visé explose au bout de **5 s** : **2,5❤** pour lui et **1❤** aux joueurs à **4 blocs** de lui, sauf Tartaros (**12 min**, Natsu immunisé).
 - +**0,5❤** par kill. Sous **3❤** : Force I et Résistance I.
 :::
 
 :::role Keith {camp="Tartaros" tete="https://mc-heads.net/head/f26da4e4e59904375272e8db6394bd050bd7f203e9814e02f7d2d2265d49fede/128"}
-Vitesse I · retour dans Tartaros.
+Vitesse I · Seigneur des morts · Étreinte des morts · retour dans Tartaros.
 
 - **Magie** : aucune, tes pouvoirs n'ont que des recharges
-- Vitesse I, **12❤**. Après un kill de Tartaros, **5 s** pour `/fttartaros <pseudo>` : le joueur revient dans Tartaros (**1 fois**).
+- Vitesse I, **12❤**. Tu connais ton pantin Silver.
+- **Seigneur des morts** : chaque mort à **30 blocs** de toi te soigne de **2❤**.
+- **Étreinte des morts** : le joueur visé est retenu **3 s** et prend Wither I **6 s** (**12 min**).
+- Après un kill de Tartaros, **5 s** pour `/fttartaros <pseudo>` : le joueur revient dans Tartaros (**1 fois**).
 :::
 
 :::role Lamy {camp="Tartaros" tete="https://mc-heads.net/head/ac3ed070114c1b8da999a88997fbb880065565a31dc997146c0f959c6686c176/128"}
@@ -78,10 +87,12 @@ Maléfice Tournoyant.
 :::
 
 :::role Franmars {camp="Tartaros" tete="https://mc-heads.net/head/c2677b794663c9273efc84f6cb4e2b339251de84e45e1f01d3d4982fa7c3dd17/128"}
-Révolution.
+Résistance I · Mimétisme · Révolution.
 
 - **Magie** : aucune, tes pouvoirs n'ont que des recharges
-- **Révolution** : `/ftcopier <pseudo>` copie le rôle d'un joueur (**1 fois**). Tu restes dans Tartaros.
+- Résistance I tant que tu n'as pas copié de rôle.
+- **Mimétisme** : pendant **3 min**, tu prends les pourcentages du joueur visé qui sont plus hauts que les tiens (+**20%** au plus chacun, **12 min**).
+- **Révolution** : `/ftcopier <pseudo>` copie le rôle d'un joueur (**1 fois**), avec tous ses objets. Tu restes dans Tartaros.
 :::
 
 :::role Seila {camp="Tartaros" tete="https://mc-heads.net/head/1cce92a68a25783912178599c00b299e4796583f140b01a1f07ec599fab28e2d/128"}

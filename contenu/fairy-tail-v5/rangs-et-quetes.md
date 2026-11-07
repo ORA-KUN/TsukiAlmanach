@@ -4,7 +4,7 @@ icon: 📋
 description: Les rangs C, B, A et S, leurs avantages, les quêtes de guilde et leurs récompenses.
 parent: regles
 position: 2
-revision: 1
+revision: 2
 ---
 
 ## Rangs
@@ -22,12 +22,13 @@ Revois ton rang avec `/ft rang`.
 
 ## Quêtes de guilde
 
-À **20 min**, chaque mage reçoit **5 quêtes** de son rang, toutes différentes : récolter, chasser, fabriquer, dépenser de la magie, rester dans une guilde ou livrer des objets. Les quantités grandissent avec le rang (jusqu'à **5 fois** celles du rang C).
+À **20 min**, chaque mage reçoit **10 quêtes** de son rang, toutes différentes (**3** au plus par catégorie) : récolter, chasser, fabriquer, dépenser de la magie, rester dans une guilde ou livrer des objets. Les quantités grandissent avec le rang (jusqu'à **5 fois** celles du rang C).
 
 - Les quêtes C et B se font partout.
 - Les quêtes A et S s'**acceptent** dans un quartier général, n'importe lequel (à **30 blocs**).
 - Les livraisons se remettent dans un quartier général, depuis le menu `/ft quetes`.
-- **5** quêtes de ton rang terminées : promotion au rang suivant, annoncée à tous, et **5** nouvelles quêtes.
+- **5** quêtes de ton rang terminées, au choix parmi les **10** : promotion au rang suivant, annoncée à tous, et **10** nouvelles quêtes. Celles de l'ancien rang qui n'étaient pas faites disparaissent.
+- Gildarts reçoit en plus une quête de rang S d'office.
 
 ## Récompenses
 
